@@ -1,0 +1,18 @@
+{
+    "maxResults": 100,
+    "startAt": 0,
+    "total": 2,
+    "isLast": true,
+    "values": [
+        {
+            "id": "10001",
+            "value": "Enabled feature",
+            "disabled": false
+        },
+        {
+            "id": "10002",
+            "value": "Disabled feature",
+            "disabled": true
+        }
+    ]
+}

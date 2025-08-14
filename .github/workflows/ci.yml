@@ -1,0 +1,59 @@
+name: CI
+on:
+    push:
+        branches: ['main']
+    pull_request: ~
+jobs:
+    coding-standards:
+        runs-on: ${{ matrix.operating-system }}
+        strategy:
+            matrix:
+                operating-system: [ubuntu-latest]
+                php-versions: ['8.1', '8.2', '8.3', '8.4']
+        name: PHP ${{ matrix.php-versions }} Coding standards ${{ matrix.operating-system }}
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.head_ref }}
+
+            - name: Setup PHP, with composer and extensions
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  extensions: dom, json, xml
+
+            - name: Install Composer dependencies
+              run: composer install --prefer-dist --no-progress
+
+            - name: Coding standards check (PHP CS Fixer)
+              run: |
+                  vendor/bin/php-cs-fixer fix --dry-run --diff
+                  vendor/bin/phpstan analyse
+
+    tests:
+        runs-on: ${{ matrix.operating-system }}
+        strategy:
+            matrix:
+                operating-system: [ ubuntu-latest ]
+                php-versions: [ '8.1', '8.2', '8.3', '8.4' ]
+        name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.head_ref }}
+
+            - name: Setup PHP, with composer and extensions
+              uses: shivammathur/setup-php@v2
+              with:
+                    php-version: ${{ matrix.php-versions }}
+                    extensions: dom, json, xml
+                    coverage: xdebug
+            - run: composer install --prefer-dist --no-progress
+            - run: vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml
+            - name: Upload coverage report
+              uses: actions/upload-artifact@v4
+              with:
+                  name: coverage-report-${{ matrix.php-versions }}
+                  path: coverage.xml

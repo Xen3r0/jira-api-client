@@ -1,0 +1,27 @@
+{
+    "self": "https://workspace.atlassian.net/rest/api/3/project/search?expand=&maxResults=50&query=QA&orderBy=name&startAt=0",
+    "maxResults": 50,
+    "startAt": 0,
+    "total": 1,
+    "isLast": true,
+    "values": [
+        {
+            "expand": "description,lead,issueTypes,url,projectKeys,permissions,insight",
+            "self": "https://workspace.atlassian.net/rest/api/3/project/10011",
+            "id": "10011",
+            "key": "QA",
+            "name": "QA project",
+            "avatarUrls": {
+                "48x48": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747",
+                "24x24": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=small",
+                "16x16": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=xsmall",
+                "32x32": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=medium"
+            },
+            "projectTypeKey": "software",
+            "simplified": false,
+            "style": "classic",
+            "isPrivate": false,
+            "properties": {}
+        }
+    ]
+}
