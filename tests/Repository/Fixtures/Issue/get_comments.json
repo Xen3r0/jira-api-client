@@ -1,0 +1,66 @@
+{
+    "startAt": 0,
+    "maxResults": 15,
+    "total": 4,
+    "comments": [
+        {
+            "self": "https://workspace.atlassian.net/rest/api/3/issue/23998/comment/49837",
+            "id": "49837",
+            "author": {
+                "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=712020%3Ae4714706-cc14-4f5f-b242-57d9c8af9654",
+                "accountId": "712020:e4714706-cc14-4f5f-b242-57d9c8af9654",
+                "avatarUrls": {
+                    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/48",
+                    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/24",
+                    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/16",
+                    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/32"
+                },
+                "displayName": "Melanie Boulanger",
+                "active": true,
+                "timeZone": "Europe/Paris",
+                "accountType": "atlassian"
+            },
+            "body": {
+                "type": "doc",
+                "version": 1,
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "mention",
+                                "attrs": {
+                                    "id": "712020:d6b3ed4a-2cce-4a91-a30a-0011cb171f64",
+                                    "text": "@Johanna Causse",
+                                    "accessLevel": "",
+                                    "localId": "f806068f-52b0-4db7-b540-f2b91e6437ee"
+                                }
+                            },
+                            {
+                                "type": "text",
+                                "text": "  Can you test again this issue ?"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "updateAuthor": {
+                "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=712020%3Ae4714706-cc14-4f5f-b242-57d9c8af9654",
+                "accountId": "712020:e4714706-cc14-4f5f-b242-57d9c8af9654",
+                "avatarUrls": {
+                    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/48",
+                    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/24",
+                    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/16",
+                    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:e4714706-cc14-4f5f-b242-57d9c8af9654/e2a77a5a-2323-4bbf-b7a2-cf52afcb2524/32"
+                },
+                "displayName": "Melanie Boulanger",
+                "active": true,
+                "timeZone": "Europe/Paris",
+                "accountType": "atlassian"
+            },
+            "created": "2025-07-07T12:06:42.139+0200",
+            "updated": "2025-07-07T12:06:42.139+0200",
+            "jsdPublic": true
+        }
+    ]
+}

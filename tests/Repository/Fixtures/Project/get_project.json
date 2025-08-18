@@ -1,0 +1,74 @@
+{
+    "expand": "description,lead,issueTypes,url,projectKeys,permissions,insight",
+    "self": "https://workspace.atlassian.net/rest/api/3/project/10011",
+    "id": "10011",
+    "key": "QA",
+    "description": "",
+    "lead": {
+        "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=789a4c7efc68c10069e9f597",
+        "accountId": "789a4c7efc68c10069e9f597",
+        "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/789a4c7efc68c10069e9f597/852fd169-55bc-4dcc-841f-1c958d67ee15/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/789a4c7efc68c10069e9f597/852fd169-55bc-4dcc-841f-1c958d67ee15/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/789a4c7efc68c10069e9f597/852fd169-55bc-4dcc-841f-1c958d67ee15/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/789a4c7efc68c10069e9f597/852fd169-55bc-4dcc-841f-1c958d67ee15/32"
+        },
+        "displayName": "Dan Boulanger",
+        "active": true
+    },
+    "components": [],
+    "issueTypes": [
+        {
+            "self": "https://workspace.atlassian.net/rest/api/3/issuetype/10000",
+            "id": "10000",
+            "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+            "iconUrl": "https://workspace.atlassian.net/images/icons/issuetypes/epic.svg",
+            "name": "Epic",
+            "subtask": false,
+            "hierarchyLevel": 1
+        }
+    ],
+    "assigneeType": "UNASSIGNED",
+    "versions": [
+        {
+            "self": "https://workspace.atlassian.net/rest/api/3/version/10738",
+            "id": "10738",
+            "name": "1.0.1",
+            "archived": false,
+            "released": true,
+            "releaseDate": "2023-10-17",
+            "userReleaseDate": "17/oct./23",
+            "projectId": 10011
+        },
+        {
+            "self": "https://workspace.atlassian.net/rest/api/3/version/10604",
+            "id": "10604",
+            "name": "1.0.0",
+            "archived": false,
+            "released": true,
+            "startDate": "2023-02-28",
+            "releaseDate": "2023-03-21",
+            "userStartDate": "28/févr./23",
+            "userReleaseDate": "21/mars/23",
+            "projectId": 10011
+        }
+    ],
+    "name": "QA project",
+    "roles": {
+        "atlassian-addons-project-access": "https://workspace.atlassian.net/rest/api/3/project/10011/role/10003",
+        "Service Desk Team": "https://workspace.atlassian.net/rest/api/3/project/10011/role/10026",
+        "Service Desk Customers": "https://workspace.atlassian.net/rest/api/3/project/10011/role/10025",
+        "Administrators": "https://workspace.atlassian.net/rest/api/3/project/10011/role/10002"
+    },
+    "avatarUrls": {
+        "48x48": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747",
+        "24x24": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=small",
+        "16x16": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=xsmall",
+        "32x32": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=medium"
+    },
+    "projectTypeKey": "software",
+    "simplified": false,
+    "style": "classic",
+    "isPrivate": false,
+    "properties": {}
+}

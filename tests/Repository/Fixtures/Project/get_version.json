@@ -1,0 +1,11 @@
+{
+    "self": "https://workspace.atlassian.net/rest/api/3/version/11950",
+    "id": "11950",
+    "name": "2.0.0",
+    "archived": false,
+    "released": false,
+    "releaseDate": "2025-08-19",
+    "overdue": false,
+    "userReleaseDate": "19/août/25",
+    "projectId": 10011
+}

@@ -1,0 +1,357 @@
+{
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_10010.requestTypePractice",
+    "id": "24444",
+    "self": "https://workspace.atlassian.net/rest/api/3/issue/24444",
+    "key": "QA-6862",
+    "fields": {
+        "statuscategorychangedate": "2025-07-31T09:05:43.055+0200",
+        "parent": {
+            "id": "12800",
+            "key": "QA-735",
+            "self": "https://workspace.atlassian.net/rest/api/3/issue/12800",
+            "fields": {
+                "summary": "Bugfix for the main application",
+                "status": {
+                    "self": "https://workspace.atlassian.net/rest/api/3/status/10003",
+                    "description": "",
+                    "iconUrl": "https://workspace.atlassian.net/",
+                    "name": "TODO",
+                    "id": "10003",
+                    "statusCategory": {
+                        "self": "https://workspace.atlassian.net/rest/api/3/statuscategory/2",
+                        "id": 2,
+                        "key": "new",
+                        "colorName": "blue-gray",
+                        "name": "TODO"
+                    }
+                },
+                "priority": {
+                    "self": "https://workspace.atlassian.net/rest/api/3/priority/3",
+                    "iconUrl": "https://workspace.atlassian.net/images/icons/priorities/medium_new.svg",
+                    "name": "Medium",
+                    "id": "3"
+                },
+                "issuetype": {
+                    "self": "https://workspace.atlassian.net/rest/api/3/issuetype/10000",
+                    "id": "10000",
+                    "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+                    "iconUrl": "https://workspace.atlassian.net/images/icons/issuetypes/epic.svg",
+                    "name": "Epic",
+                    "subtask": false,
+                    "hierarchyLevel": 1
+                }
+            }
+        },
+        "customfield_10070": null,
+        "customfield_10071": null,
+        "customfield_10072": {
+            "self": "https://workspace.atlassian.net/rest/api/3/customFieldOption/10338",
+            "value": "No",
+            "id": "10338"
+        },
+        "customfield_10073": {
+            "self": "https://workspace.atlassian.net/rest/api/3/customFieldOption/10340",
+            "value": "No",
+            "id": "10340"
+        },
+        "customfield_10074": null,
+        "customfield_10075": null,
+        "fixVersions": [
+            {
+                "self": "https://workspace.atlassian.net/rest/api/3/version/11818",
+                "id": "11818",
+                "name": "1.0.1",
+                "archived": false,
+                "released": true,
+                "releaseDate": "2025-08-15"
+            }
+        ],
+        "customfield_10110": null,
+        "customfield_10077": null,
+        "customfield_10078": null,
+        "statusCategory": {
+            "self": "https://workspace.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+        },
+        "resolution": null,
+        "customfield_10112": null,
+        "customfield_10079": null,
+        "customfield_10105": null,
+        "customfield_10106": null,
+        "customfield_10107": null,
+        "customfield_10108": null,
+        "lastViewed": null,
+        "customfield_10061": {
+            "self": "https://workspace.atlassian.net/rest/api/3/customFieldOption/10334",
+            "value": "no",
+            "id": "10334"
+        },
+        "customfield_10062": null,
+        "customfield_10063": null,
+        "customfield_10064": null,
+        "customfield_10065": null,
+        "priority": {
+            "self": "https://workspace.atlassian.net/rest/api/3/priority/1",
+            "iconUrl": "https://workspace.atlassian.net/images/icons/priorities/highest_new.svg",
+            "name": "Highest",
+            "id": "1"
+        },
+        "customfield_10067": {
+            "self": "https://workspace.atlassian.net/rest/api/3/customFieldOption/10336",
+            "value": "no",
+            "id": "10336"
+        },
+        "customfield_10342": null,
+        "customfield_10068": null,
+        "customfield_10103": null,
+        "labels": [
+            "Internal"
+        ],
+        "aggregatetimeoriginalestimate": null,
+        "timeestimate": null,
+        "versions": [
+            {
+                "self": "https://workspace.atlassian.net/rest/api/3/version/11686",
+                "id": "11686",
+                "name": "1.0.0",
+                "archived": false,
+                "released": true,
+                "releaseDate": "2025-08-14"
+            }
+        ],
+        "issuelinks": [],
+        "assignee": {
+            "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=712020%3A9ad3f47a-0294-46yu-9ab8-7cf32d5418df",
+            "accountId": "7275a685c0c95ef59778c7ed1d3ert5b",
+            "avatarUrls": {
+                "48x48": "https://secure.gravatar.com/avatar/af969515d3b123bf99a29646ba2c5799?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FKJ-3.png",
+                "24x24": "https://secure.gravatar.com/avatar/af969515d3b123bf99a29646ba2c5799?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FKJ-3.png",
+                "16x16": "https://secure.gravatar.com/avatar/af969515d3b123bf99a29646ba2c5799?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FKJ-3.png",
+                "32x32": "https://secure.gravatar.com/avatar/af969515d3b123bf99a29646ba2c5799?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FKJ-3.png"
+            },
+            "displayName": "Henry Johnson",
+            "active": true,
+            "timeZone": "Europe/Paris",
+            "accountType": "atlassian"
+        },
+        "status": {
+            "self": "https://workspace.atlassian.net/rest/api/3/status/10004",
+            "description": "",
+            "iconUrl": "https://workspace.atlassian.net/",
+            "name": "Done",
+            "id": "10004",
+            "statusCategory": {
+                "self": "https://workspace.atlassian.net/rest/api/3/statuscategory/3",
+                "id": 3,
+                "key": "done",
+                "colorName": "green",
+                "name": "Done"
+            }
+        },
+        "components": [],
+        "customfield_10050": null,
+        "customfield_10051": [],
+        "customfield_10052": null,
+        "customfield_10053": null,
+        "customfield_10054": null,
+        "customfield_10055": null,
+        "customfield_10056": null,
+        "customfield_10057": {
+            "self": "https://workspace.atlassian.net/rest/api/3/customFieldOption/10185",
+            "value": "Books > Pages",
+            "id": "10185"
+        },
+        "customfield_10058": null,
+        "customfield_10059": null,
+        "customfield_10049": null,
+        "aggregatetimeestimate": null,
+        "creator": {
+            "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=62bc28afda8620d53392a9f8",
+            "accountId": "62bc28afda8620d53392a9f8",
+            "avatarUrls": {
+                "48x48": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png",
+                "24x24": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png",
+                "16x16": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png",
+                "32x32": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png"
+            },
+            "displayName": "John Doe",
+            "active": true,
+            "timeZone": "Europe/Paris",
+            "accountType": "atlassian"
+        },
+        "subtasks": [],
+        "customfield_10040": null,
+        "customfield_10041": null,
+        "customfield_10042": null,
+        "reporter": {
+            "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=62bc28afda8620d53392a9f8",
+            "accountId": "62bc28afda8620d53392a9f8",
+            "avatarUrls": {
+                "48x48": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png",
+                "24x24": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png",
+                "16x16": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png",
+                "32x32": "https://secure.gravatar.com/avatar/7275a685c0c95ef59778c7ed1d3bee5b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FD-3.png"
+            },
+            "displayName": "John Doe",
+            "active": true,
+            "timeZone": "Europe/Paris",
+            "accountType": "atlassian"
+        },
+        "customfield_10043": null,
+        "customfield_10044": null,
+        "aggregateprogress": {
+            "progress": 0,
+            "total": 0
+        },
+        "customfield_10045": null,
+        "customfield_10046": null,
+        "customfield_10047": null,
+        "customfield_10048": null,
+        "customfield_10038": null,
+        "customfield_10039": null,
+        "progress": {
+            "progress": 0,
+            "total": 0
+        },
+        "votes": {
+            "self": "https://workspace.atlassian.net/rest/api/3/issue/QA-6862/votes",
+            "votes": 0,
+            "hasVoted": false
+        },
+        "issuetype": {
+            "self": "https://workspace.atlassian.net/rest/api/3/issuetype/10007",
+            "id": "10007",
+            "description": "Bug",
+            "iconUrl": "https://workspace.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+            "name": "Bug",
+            "subtask": false,
+            "avatarId": 10303,
+            "hierarchyLevel": 0
+        },
+        "timespent": null,
+        "customfield_10030": [],
+        "project": {
+            "self": "https://workspace.atlassian.net/rest/api/3/project/10011",
+            "id": "10011",
+            "key": "QA",
+            "name": "QA project",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+                "48x48": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747",
+                "24x24": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=small",
+                "16x16": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=xsmall",
+                "32x32": "https://workspace.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10747?size=medium"
+            }
+        },
+        "customfield_10031": null,
+        "customfield_10032": null,
+        "customfield_10033": null,
+        "customfield_10034": null,
+        "aggregatetimespent": null,
+        "customfield_10035": null,
+        "customfield_10036": null,
+        "customfield_10037": null,
+        "customfield_10028": null,
+        "customfield_10029": null,
+        "resolutiondate": null,
+        "workratio": -1,
+        "watches": {
+            "self": "https://workspace.atlassian.net/rest/api/3/issue/QA-6862/watchers",
+            "watchCount": 3,
+            "isWatching": false
+        },
+        "created": "2025-07-25T11:54:36.804+0200",
+        "customfield_10020": null,
+        "customfield_10021": null,
+        "customfield_10022": null,
+        "customfield_10144": null,
+        "customfield_10023": null,
+        "customfield_10024": "2025-07-29T16:54:48.341+0200",
+        "customfield_10145": null,
+        "customfield_10025": null,
+        "customfield_10016": null,
+        "customfield_10017": null,
+        "customfield_10019": "1|i00huv:",
+        "updated": "2025-08-11T10:33:54.830+0200",
+        "timeoriginalestimate": null,
+        "customfield_10250": null,
+        "customfield_10251": null,
+        "description": {
+            "version": 1,
+            "type": "doc",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": "Hello "
+                        },
+                        {
+                            "type": "text",
+                            "text": "world",
+                            "marks": [
+                                {
+                                    "type": "strong"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "customfield_10010": null,
+        "customfield_10252": null,
+        "customfield_10014": "QA-735",
+        "customfield_10015": null,
+        "customfield_10247": null,
+        "customfield_10005": null,
+        "customfield_10006": null,
+        "customfield_10248": null,
+        "customfield_10249": null,
+        "customfield_10007": null,
+        "security": null,
+        "customfield_10008": "2025-07-29T11:41:00.000+0200",
+        "customfield_10009": "2025-07-31T09:05:00.000+0200",
+        "summary": "Cannot save my data",
+        "customfield_10080": null,
+        "customfield_10081": null,
+        "customfield_10082": null,
+        "customfield_10083": null,
+        "customfield_10084": null,
+        "customfield_10085": null,
+        "customfield_10086": null,
+        "customfield_10087": null,
+        "customfield_10000": "{}",
+        "customfield_10088": null,
+        "customfield_10243": null,
+        "customfield_10001": null,
+        "customfield_10244": null,
+        "customfield_10002": [],
+        "customfield_10003": [
+            {
+                "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=712020%3A91bb98c8-064a-49e4-a183-iu93171820ec",
+                "accountId": "712020:91bb98c8-064a-49e4-a183-dd93171820ec",
+                "avatarUrls": {
+                    "48x48": "https://secure.gravatar.com/avatar/ba88dba78f4de9783f6cf348186542e6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FDC-2.png",
+                    "24x24": "https://secure.gravatar.com/avatar/ba88dba78f4de9783f6cf348186542e6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FDC-2.png",
+                    "16x16": "https://secure.gravatar.com/avatar/ba88dba78f4de9783f6cf348186542e6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FDC-2.png",
+                    "32x32": "https://secure.gravatar.com/avatar/ba88dba78f4de9783f6cf348186542e6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FDC-2.png"
+                },
+                "displayName": "David Carter",
+                "active": true,
+                "timeZone": "Europe/Paris",
+                "accountType": "atlassian"
+            }
+        ],
+        "customfield_10245": null,
+        "customfield_10004": null,
+        "customfield_10246": null,
+        "environment": null,
+        "duedate": null
+    }
+}
