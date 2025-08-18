@@ -15,7 +15,7 @@ This library requires PHP 8.1 or higher and the following PHP extensions:
 
 ## Installation
 
-Add `xen3r0/jira-api-client` to your `composer.json` file:
+Add [xen3r0/jira-api-client](https://packagist.org/packages/xen3r0/jira-api-client) to your `composer.json` file:
 
 ```bash
 php composer.phar require xen3r0/jira-api-client
@@ -43,7 +43,7 @@ Now, you can use some repositories, for example, `IssueRepository`:
 use Xen3r0\JiraApiClient\Repository\IssueRepository;
 
 $issueRepository = new IssueRepository($client);
-$issue = $issueRepository->get('PROJECT-123');
+$issue = $issueRepository->findByIdOrKey('PROJECT-123');
 ```
 
 # Repositories
