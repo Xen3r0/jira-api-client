@@ -11,5 +11,6 @@ return static function (ContainerConfigurator $container) {
         ->set(JiraClientInterface::class, JiraClient::class)
             ->args([
                 service(ConfigurationInterface::class),
+                service('http_client'),
             ]);
 };
