@@ -13,13 +13,11 @@ class IssueRepository extends AbstractRepository implements IssueRepositoryInter
         $response = $this->client->post(
             'search/jql',
             [
-                'query' => [
-                    'jql' => $jql,
-                    'maxResults' => $maxResults,
-                    'fields' => [],
-                    'expand' => '',
-                    'nextPageToken' => $nextPageToken,
-                ],
+                'jql' => $jql,
+                'maxResults' => $maxResults,
+                'fields' => [],
+                'expand' => '',
+                'nextPageToken' => $nextPageToken,
             ]
         );
 
