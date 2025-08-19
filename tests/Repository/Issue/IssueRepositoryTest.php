@@ -22,7 +22,16 @@ class IssueRepositoryTest extends AbstractRepositoryTestCase
         $jiraClient
             ->expects($this->once())
             ->method('post')
-            ->with('search/jql')
+            ->with(
+                'search/jql',
+                [
+                    'jql' => 'project = QA',
+                    'maxResults' => 15,
+                    'fields' => [],
+                    'expand' => '',
+                    'nextPageToken' => null,
+                ]
+            )
             ->willReturn($response);
 
         $response
