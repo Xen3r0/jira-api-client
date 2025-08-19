@@ -106,7 +106,7 @@ class Version
         return $this;
     }
 
-    public function isArchived(): bool
+    public function getArchived(): bool
     {
         return $this->archived;
     }
@@ -142,7 +142,7 @@ class Version
         return $this;
     }
 
-    public function gsReleased(): bool
+    public function getReleased(): bool
     {
         return $this->released;
     }

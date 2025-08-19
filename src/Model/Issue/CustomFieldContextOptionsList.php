@@ -29,4 +29,11 @@ class CustomFieldContextOptionsList
 
         return $this;
     }
+
+    public function addOption(CustomFieldOption $option): static
+    {
+        $this->options[] = $option;
+
+        return $this;
+    }
 }

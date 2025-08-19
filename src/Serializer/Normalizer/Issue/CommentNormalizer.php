@@ -16,14 +16,28 @@ class CommentNormalizer implements NormalizerInterface, DenormalizerInterface
     ) {
     }
 
-    public function supportsNormalization(mixed $data, ?string $format = null): bool
+    /**
+     * @param array<string, mixed> $context
+     */
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof Comment;
     }
 
-    public function supportsDenormalization(mixed $data, string $type, ?string $format = null): bool
+    /**
+     * @param array<string, mixed> $context
+     */
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return Comment::class === $type;
+    }
+
+    /**
+     * @return array<string, bool>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['object' => __CLASS__ === static::class];
     }
 
     /**

@@ -11,4 +11,6 @@ interface IssueCommentRepositoryInterface
     public function findAll(string $issueKey, ?IssueCommentOrder $orderBy = null, int $startAt = 0, int $maxResults = 15): CommentSearchResult;
 
     public function findById(string $issueKey, string $id): ?Comment;
+
+    public function add(string $issueKey, Comment $comment): ?Comment;
 }

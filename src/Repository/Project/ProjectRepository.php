@@ -8,7 +8,7 @@ use Xen3r0\JiraApiClient\Repository\AbstractRepository;
 
 class ProjectRepository extends AbstractRepository implements ProjectRepositoryInterface
 {
-    public function findAll(string $query, int $maxResults = 50, int $startAt = 0, string $orderBy = 'name'): ProjectSearchResult
+    public function findAll(?string $query = null, int $maxResults = 50, int $startAt = 0, string $orderBy = 'name'): ProjectSearchResult
     {
         $response = $this->client->get(
             'project/search',
