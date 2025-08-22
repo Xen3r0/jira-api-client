@@ -64,7 +64,7 @@ class CommentNormalizer implements NormalizerInterface, DenormalizerInterface
         }
 
         if ($object->getBody() instanceof Document) {
-            $data['description'] = $object->getBody()->jsonSerialize();
+            $data['body'] = $object->getBody()->jsonSerialize();
         }
 
         return $data;
@@ -77,7 +77,7 @@ class CommentNormalizer implements NormalizerInterface, DenormalizerInterface
     {
         $basicFields = [];
         foreach ($data as $key => $value) {
-            if ('description' === $key) {
+            if ('body' === $key) {
                 continue;
             }
 
