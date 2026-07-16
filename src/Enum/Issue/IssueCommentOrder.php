@@ -2,6 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Enum\Issue;
 
+/**
+ * @codeCoverageIgnore
+ */
 enum IssueCommentOrder: string
 {
     case Created = 'created';

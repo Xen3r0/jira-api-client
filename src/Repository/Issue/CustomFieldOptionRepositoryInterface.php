@@ -6,6 +6,9 @@ use Xen3r0\JiraApiClient\Model\Issue\CustomFieldContextOptionsList;
 use Xen3r0\JiraApiClient\Model\Issue\CustomFieldOption;
 use Xen3r0\JiraApiClient\Model\Issue\CustomFieldOptionSearchResult;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface CustomFieldOptionRepositoryInterface
 {
     public function findAll(string $fieldId, int $contextId, int $maxResults = 100, int $startAt = 0): CustomFieldOptionSearchResult;

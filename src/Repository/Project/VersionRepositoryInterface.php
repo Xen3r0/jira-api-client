@@ -4,6 +4,9 @@ namespace Xen3r0\JiraApiClient\Repository\Project;
 
 use Xen3r0\JiraApiClient\Model\Version\Version;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface VersionRepositoryInterface
 {
     public function findById(string $id): ?Version;

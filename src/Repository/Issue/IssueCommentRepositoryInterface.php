@@ -6,6 +6,9 @@ use Xen3r0\JiraApiClient\Enum\Issue\IssueCommentOrder;
 use Xen3r0\JiraApiClient\Model\Issue\Comment;
 use Xen3r0\JiraApiClient\Model\Issue\CommentSearchResult;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface IssueCommentRepositoryInterface
 {
     public function findAll(string $issueKey, ?IssueCommentOrder $orderBy = null, int $startAt = 0, int $maxResults = 15): CommentSearchResult;
