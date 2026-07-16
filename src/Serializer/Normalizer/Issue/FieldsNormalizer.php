@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Xen3r0\JiraApiClient\Model\Issue\CustomField;
 use Xen3r0\JiraApiClient\Model\Issue\Fields;
 
-class FieldsNormalizer implements NormalizerInterface, DenormalizerInterface
+readonly class FieldsNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     public function __construct(
         private readonly ObjectNormalizer $objectNormalizer,

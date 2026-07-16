@@ -7,7 +7,7 @@ use DH\Adf\Node\Block\Paragraph;
 use DH\Adf\Node\Inline\Mention;
 use DH\Adf\Node\Inline\Text;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Xen3r0\JiraApiClient\Http\JiraClient;
+use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepository;
 use Xen3r0\JiraApiClient\Tests\Repository\AbstractRepositoryTestCase;
 
@@ -16,7 +16,7 @@ class IssueCommentRepositoryTest extends AbstractRepositoryTestCase
     public function testFindAll(): void
     {
         $content = $this->getFixtureContent('Issue/get_comments.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient
@@ -38,7 +38,7 @@ class IssueCommentRepositoryTest extends AbstractRepositoryTestCase
     public function testFindById(): void
     {
         $content = $this->getFixtureContent('Issue/get_comment.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient

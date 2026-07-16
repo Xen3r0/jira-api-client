@@ -7,7 +7,7 @@ use Xen3r0\JiraApiClient\Model\Issue\CustomFieldOption;
 use Xen3r0\JiraApiClient\Model\Issue\CustomFieldOptionSearchResult;
 use Xen3r0\JiraApiClient\Repository\AbstractRepository;
 
-class CustomFieldOptionRepository extends AbstractRepository implements CustomFieldOptionRepositoryInterface
+readonly class CustomFieldOptionRepository extends AbstractRepository implements CustomFieldOptionRepositoryInterface
 {
     public function findAll(string $fieldId, int $contextId, int $maxResults = 100, int $startAt = 0): CustomFieldOptionSearchResult
     {

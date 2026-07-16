@@ -3,7 +3,7 @@
 Thank you for considering contributing to this project! Your help is greatly appreciated. Please follow these guidelines to ensure a smooth contribution process.
 
 ## Prerequisites
-- PHP 8.1 or higher
+- PHP 8.2 or higher
 - Composer
 - Git
 

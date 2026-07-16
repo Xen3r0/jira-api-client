@@ -9,7 +9,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationInterface;
 
-class JiraClient implements JiraClientInterface
+readonly class JiraClient implements JiraClientInterface
 {
     private HttpClientInterface $httpClient;
 

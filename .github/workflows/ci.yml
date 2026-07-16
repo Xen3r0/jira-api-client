@@ -5,12 +5,8 @@ on:
     pull_request: ~
 jobs:
     coding-standards:
-        runs-on: ${{ matrix.operating-system }}
-        strategy:
-            matrix:
-                operating-system: [ubuntu-latest]
-                php-versions: ['8.1', '8.2', '8.3', '8.4']
-        name: PHP ${{ matrix.php-versions }} Coding standards ${{ matrix.operating-system }}
+        runs-on: ubuntu-latest
+        name: Coding standards
         steps:
             - name: checkout
               uses: actions/checkout@v4
@@ -20,8 +16,21 @@ jobs:
             - name: Setup PHP, with composer and extensions
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: ${{ matrix.php-versions }}
+                  php-version: '8.2'
                   extensions: dom, json, xml
+                  tools: composer:v2
+                  coverage: none
+
+            - name: Get composer cache directory
+              id: composer-cache
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+            - name: Cache composer dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-8.2-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: ${{ runner.os }}-composer-8.2-
 
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-progress
@@ -33,10 +42,12 @@ jobs:
 
     tests:
         runs-on: ${{ matrix.operating-system }}
+        permissions:
+            pull-requests: write
         strategy:
             matrix:
                 operating-system: [ ubuntu-latest ]
-                php-versions: [ '8.1', '8.2', '8.3', '8.4' ]
+                php-versions: [ '8.2', '8.3', '8.4' ]
         name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
         steps:
             - name: checkout
@@ -47,13 +58,52 @@ jobs:
             - name: Setup PHP, with composer and extensions
               uses: shivammathur/setup-php@v2
               with:
-                    php-version: ${{ matrix.php-versions }}
-                    extensions: dom, json, xml
-                    coverage: xdebug
+                  php-version: ${{ matrix.php-versions }}
+                  extensions: dom, json, xml
+                  tools: composer:v2
+                  coverage: ${{ matrix.php-versions == '8.2' && 'xdebug' || 'none' }}
+
+            - name: Get composer cache directory
+              id: composer-cache
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+            - name: Cache composer dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: ${{ runner.os }}-composer-${{ matrix.php-versions }}-
+
             - run: composer install --prefer-dist --no-progress
-            - run: vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml
+
+            - name: Run tests
+              if: matrix.php-versions != '8.2'
+              run: vendor/bin/phpunit
+
+            - name: Run tests with coverage
+              if: matrix.php-versions == '8.2'
+              run: vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --coverage-cobertura=coverage-cobertura.xml
+
             - name: Upload coverage report
+              if: matrix.php-versions == '8.2'
               uses: actions/upload-artifact@v4
               with:
-                  name: coverage-report-${{ matrix.php-versions }}
+                  name: coverage-report
                   path: coverage.xml
+
+            - name: Build coverage summary
+              if: matrix.php-versions == '8.2'
+              uses: irongut/CodeCoverageSummary@v1.3.0
+              with:
+                  filename: coverage-cobertura.xml
+                  badge: true
+                  format: markdown
+                  output: both
+
+            - name: Comment coverage summary on PR
+              if: matrix.php-versions == '8.2' && github.event_name == 'pull_request'
+              uses: marocchino/sticky-pull-request-comment@v2
+              continue-on-error: true
+              with:
+                  header: coverage
+                  path: code-coverage-results.md

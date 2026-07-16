@@ -3,7 +3,7 @@
 namespace Xen3r0\JiraApiClient\Tests\Repository\Project;
 
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Xen3r0\JiraApiClient\Http\JiraClient;
+use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepository;
 use Xen3r0\JiraApiClient\Tests\Repository\AbstractRepositoryTestCase;
 
@@ -12,7 +12,7 @@ class ProjectRepositoryTest extends AbstractRepositoryTestCase
     public function testFindAll(): void
     {
         $content = $this->getFixtureContent('Project/get_project_search.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient
@@ -34,7 +34,7 @@ class ProjectRepositoryTest extends AbstractRepositoryTestCase
     public function testFindByIdOrKey(): void
     {
         $content = $this->getFixtureContent('Project/get_project.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient

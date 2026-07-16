@@ -8,7 +8,7 @@ use Xen3r0\JiraApiClient\Model\Issue\Comment;
 use Xen3r0\JiraApiClient\Model\Issue\CommentSearchResult;
 use Xen3r0\JiraApiClient\Repository\AbstractRepository;
 
-class IssueCommentRepository extends AbstractRepository implements IssueCommentRepositoryInterface
+readonly class IssueCommentRepository extends AbstractRepository implements IssueCommentRepositoryInterface
 {
     public function findAll(string $issueKey, ?IssueCommentOrder $orderBy = null, int $startAt = 0, int $maxResults = 15): CommentSearchResult
     {

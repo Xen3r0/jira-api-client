@@ -7,7 +7,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Serializer\SerializerFactory;
 
-abstract class AbstractRepository
+abstract readonly class AbstractRepository
 {
     private SerializerInterface $serializer;
 
