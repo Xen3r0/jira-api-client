@@ -5,12 +5,8 @@ on:
     pull_request: ~
 jobs:
     coding-standards:
-        runs-on: ${{ matrix.operating-system }}
-        strategy:
-            matrix:
-                operating-system: [ubuntu-latest]
-                php-versions: ['8.2', '8.3', '8.4']
-        name: PHP ${{ matrix.php-versions }} Coding standards ${{ matrix.operating-system }}
+        runs-on: ubuntu-latest
+        name: Coding standards
         steps:
             - name: checkout
               uses: actions/checkout@v4
@@ -20,7 +16,7 @@ jobs:
             - name: Setup PHP, with composer and extensions
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: ${{ matrix.php-versions }}
+                  php-version: '8.2'
                   extensions: dom, json, xml
 
             - name: Install Composer dependencies
