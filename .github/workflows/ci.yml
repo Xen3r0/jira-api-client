@@ -9,7 +9,7 @@ jobs:
         name: Coding standards
         steps:
             - name: checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   ref: ${{ github.head_ref }}
 
@@ -26,7 +26,7 @@ jobs:
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v4
+              uses: actions/cache@v6
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-8.2-${{ hashFiles('**/composer.lock') }}
@@ -49,7 +49,7 @@ jobs:
         name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
         steps:
             - name: checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   ref: ${{ github.head_ref }}
 
@@ -66,7 +66,7 @@ jobs:
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v4
+              uses: actions/cache@v6
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
@@ -84,7 +84,7 @@ jobs:
 
             - name: Upload coverage report
               if: matrix.php-versions == '8.2'
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
                   name: coverage-report
                   path: coverage.xml
