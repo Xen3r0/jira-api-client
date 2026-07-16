@@ -127,4 +127,43 @@ class JiraClientTest extends TestCase
         $jiraClient = new JiraClient($this->configuration, $httpClient);
         $jiraClient->delete('issue/QA-123');
     }
+
+    public function testGetApiVersion(): void
+    {
+        $jiraClient = new JiraClient($this->configuration, $this->httpClient);
+
+        $this->assertEquals('3', $jiraClient->getApiVersion());
+    }
+
+    public function testConstructorUsesDefaultHttpClientWhenNoneGiven(): void
+    {
+        $jiraClient = new JiraClient($this->configuration);
+
+        $this->assertEquals('3', $jiraClient->getApiVersion());
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ClientExceptionInterface
+     */
+    public function testRequestWithoutCredentialsDoesNotSetAuthBasic(): void
+    {
+        $configuration = ConfigurationFactory::create([
+            'host' => 'https://workspace.atlassian.net',
+            'username' => null,
+            'password' => null,
+        ]);
+
+        $response = function ($method, $url, $options): MockResponse {
+            $this->assertArrayNotHasKey('auth_basic', $options);
+
+            return new MockResponse();
+        };
+        $httpClient = new MockHttpClient($response);
+
+        $jiraClient = new JiraClient($configuration, $httpClient);
+        $jiraClient->get('issue/QA-123');
+    }
 }
