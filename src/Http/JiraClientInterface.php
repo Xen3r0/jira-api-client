@@ -4,6 +4,9 @@ namespace Xen3r0\JiraApiClient\Http;
 
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface JiraClientInterface
 {
     public function getApiVersion(): string;

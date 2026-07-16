@@ -2,6 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Configuration;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface ConfigurationInterface
 {
     public function getHost(): string;

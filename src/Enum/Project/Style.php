@@ -2,6 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Enum\Project;
 
+/**
+ * @codeCoverageIgnore
+ */
 enum Style: string
 {
     case Classic = 'classic';
