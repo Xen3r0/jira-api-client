@@ -1,0 +1,14 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - composer_cache:/root/.composer/cache
+    environment:
+      PHP_IDE_CONFIG: "serverName=jira-api-client"
+      XDEBUG_MODE: "off"
+
+volumes:
+  composer_cache:
