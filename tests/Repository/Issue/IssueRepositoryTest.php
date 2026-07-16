@@ -7,7 +7,7 @@ use DH\Adf\Node\Block\Paragraph;
 use DH\Adf\Node\Inline\Text;
 use DH\Adf\Node\Mark\Strong;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Xen3r0\JiraApiClient\Http\JiraClient;
+use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepository;
 use Xen3r0\JiraApiClient\Tests\Repository\AbstractRepositoryTestCase;
 
@@ -16,7 +16,7 @@ class IssueRepositoryTest extends AbstractRepositoryTestCase
     public function testFindAll(): void
     {
         $content = $this->getFixtureContent('Issue/post_issue_search_jql.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient
@@ -47,7 +47,7 @@ class IssueRepositoryTest extends AbstractRepositoryTestCase
     public function testFindByIdOrKey(): void
     {
         $content = $this->getFixtureContent('Issue/get_issue.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient

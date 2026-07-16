@@ -21,7 +21,7 @@
 
 ## Prerequisites
 
-This library requires PHP 8.1 or higher and the following PHP extensions:
+This library requires PHP 8.2 or higher and the following PHP extensions:
 - `dom`
 - `json`
 - `xml`

@@ -15,7 +15,7 @@ final class Configuration implements ConfigurationInterface
         $this->host = $host;
     }
 
-    public static function create(string $host, ?string $username = null, ?string $password = null): static
+    public static function create(string $host, ?string $username = null, #[\SensitiveParameter] ?string $password = null): static
     {
         return (new static($host))
             ->setUsername($username)
@@ -51,7 +51,7 @@ final class Configuration implements ConfigurationInterface
         return $this->password;
     }
 
-    public function setPassword(?string $password): static
+    public function setPassword(#[\SensitiveParameter] ?string $password): static
     {
         $this->password = $password;
 

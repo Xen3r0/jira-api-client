@@ -3,7 +3,7 @@
 namespace Xen3r0\JiraApiClient\Tests\Repository\Issue;
 
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Xen3r0\JiraApiClient\Http\JiraClient;
+use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Model\Issue\CustomFieldContextOptionsList;
 use Xen3r0\JiraApiClient\Model\Issue\CustomFieldOption;
 use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepository;
@@ -14,7 +14,7 @@ class CustomFieldOptionRepositoryTest extends AbstractRepositoryTestCase
     public function testFindAll(): void
     {
         $content = $this->getFixtureContent('Issue/get_field_context_options.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient
@@ -36,7 +36,7 @@ class CustomFieldOptionRepositoryTest extends AbstractRepositoryTestCase
     public function testFindById(): void
     {
         $content = $this->getFixtureContent('Issue/get_field_context_options.json');
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient
@@ -71,7 +71,7 @@ class CustomFieldOptionRepositoryTest extends AbstractRepositoryTestCase
         $result['options'][0]['id'] = '10001';
         $result['options'][1]['id'] = '10002';
 
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient
@@ -114,7 +114,7 @@ class CustomFieldOptionRepositoryTest extends AbstractRepositoryTestCase
         ];
         $result = [...$payload];
 
-        $jiraClient = $this->createMock(JiraClient::class);
+        $jiraClient = $this->createMock(JiraClientInterface::class);
         $response = $this->createMock(ResponseInterface::class);
 
         $jiraClient

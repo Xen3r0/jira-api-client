@@ -6,7 +6,7 @@ use Xen3r0\JiraApiClient\Exception\Project\VersionMustBeExistsException;
 use Xen3r0\JiraApiClient\Model\Version\Version;
 use Xen3r0\JiraApiClient\Repository\AbstractRepository;
 
-class VersionRepository extends AbstractRepository implements VersionRepositoryInterface
+readonly class VersionRepository extends AbstractRepository implements VersionRepositoryInterface
 {
     public function findById(string $id): ?Version
     {

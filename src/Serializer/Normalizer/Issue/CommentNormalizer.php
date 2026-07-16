@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Xen3r0\JiraApiClient\Model\Issue\Comment;
 
-class CommentNormalizer implements NormalizerInterface, DenormalizerInterface
+readonly class CommentNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     public function __construct(
         private readonly ObjectNormalizer $objectNormalizer,
