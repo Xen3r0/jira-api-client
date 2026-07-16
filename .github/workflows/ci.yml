@@ -42,6 +42,8 @@ jobs:
 
     tests:
         runs-on: ${{ matrix.operating-system }}
+        permissions:
+            pull-requests: write
         strategy:
             matrix:
                 operating-system: [ ubuntu-latest ]
@@ -88,3 +90,20 @@ jobs:
               with:
                   name: coverage-report
                   path: coverage.xml
+
+            - name: Build coverage summary
+              if: matrix.php-versions == '8.2'
+              uses: irongut/CodeCoverageSummary@v1.3.0
+              with:
+                  filename: coverage.xml
+                  badge: true
+                  format: markdown
+                  output: both
+
+            - name: Comment coverage summary on PR
+              if: matrix.php-versions == '8.2' && github.event_name == 'pull_request'
+              uses: marocchino/sticky-pull-request-comment@v2
+              continue-on-error: true
+              with:
+                  header: coverage
+                  path: code-coverage-results.md
