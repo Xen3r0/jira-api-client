@@ -42,8 +42,6 @@ jobs:
 
     tests:
         runs-on: ${{ matrix.operating-system }}
-        permissions:
-            pull-requests: write
         strategy:
             matrix:
                 operating-system: [ ubuntu-latest ]
@@ -100,10 +98,6 @@ jobs:
                   format: markdown
                   output: both
 
-            - name: Comment coverage summary on PR
-              if: matrix.php-versions == '8.2' && github.event_name == 'pull_request'
-              uses: marocchino/sticky-pull-request-comment@v2
-              continue-on-error: true
-              with:
-                  header: coverage
-                  path: code-coverage-results.md
+            - name: Add coverage summary to job summary
+              if: matrix.php-versions == '8.2'
+              run: cat code-coverage-results.md >> "$GITHUB_STEP_SUMMARY"
