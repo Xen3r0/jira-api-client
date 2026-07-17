@@ -9,6 +9,7 @@ use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\VersionRepositoryInterface;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\CommentNormalizer;
@@ -45,6 +46,7 @@ class JiraApiClientExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition(CustomFieldOptionRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(IssueCommentRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(IssueRepositoryInterface::class));
+        $this->assertTrue($container->hasDefinition(IssueTransitionRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(ProjectRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(VersionRepositoryInterface::class));
 

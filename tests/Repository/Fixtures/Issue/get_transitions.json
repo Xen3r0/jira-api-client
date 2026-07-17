@@ -1,0 +1,51 @@
+{
+    "expand": "transitions",
+    "transitions": [
+        {
+            "id": "11",
+            "name": "To Do",
+            "to": {
+                "self": "https://workspace.atlassian.net/rest/api/3/status/10000",
+                "description": "",
+                "iconUrl": "https://workspace.atlassian.net/",
+                "name": "To Do",
+                "id": "10000",
+                "statusCategory": {
+                    "self": "https://workspace.atlassian.net/rest/api/3/statuscategory/2",
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                }
+            },
+            "hasScreen": false,
+            "isGlobal": false,
+            "isInitial": false,
+            "isAvailable": true,
+            "isConditional": false
+        },
+        {
+            "id": "21",
+            "name": "In Progress",
+            "to": {
+                "self": "https://workspace.atlassian.net/rest/api/3/status/10001",
+                "description": "",
+                "iconUrl": "https://workspace.atlassian.net/",
+                "name": "In Progress",
+                "id": "10001",
+                "statusCategory": {
+                    "self": "https://workspace.atlassian.net/rest/api/3/statuscategory/4",
+                    "id": 4,
+                    "key": "indeterminate",
+                    "colorName": "yellow",
+                    "name": "In Progress"
+                }
+            },
+            "hasScreen": false,
+            "isGlobal": false,
+            "isInitial": false,
+            "isAvailable": true,
+            "isConditional": false
+        }
+    ]
+}

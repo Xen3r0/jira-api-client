@@ -7,7 +7,11 @@ use DH\Adf\Node\Block\Paragraph;
 use DH\Adf\Node\Inline\Text;
 use DH\Adf\Node\Mark\Strong;
 use Symfony\Contracts\HttpClient\ResponseInterface;
+use Xen3r0\JiraApiClient\Exception\Issue\IssueMustBeExistsException;
 use Xen3r0\JiraApiClient\Http\JiraClientInterface;
+use Xen3r0\JiraApiClient\Model\Issue\Issue;
+use Xen3r0\JiraApiClient\Model\Issue\Type;
+use Xen3r0\JiraApiClient\Model\Project\Project;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepository;
 use Xen3r0\JiraApiClient\Tests\Repository\AbstractRepositoryTestCase;
 
@@ -109,5 +113,96 @@ class IssueRepositoryTest extends AbstractRepositoryTestCase
         $this->assertArrayHasKey('customfield_10073', $actual->getFields()->getCustomFields());
         $this->assertArrayHasKey('customfield_10061', $actual->getFields()->getCustomFields());
         $this->assertArrayHasKey('customfield_10067', $actual->getFields()->getCustomFields());
+    }
+
+    public function testCreate(): void
+    {
+        $issue = new Issue();
+        $issue->getFields()
+            ->setSummary('Something is broken')
+            ->setProject((new Project())->setKey('QA'))
+            ->setIssueType((new Type())->setId('10001'));
+
+        $payload = json_encode([
+            'fields' => [
+                'summary' => 'Something is broken',
+                'labels' => [],
+                'issuetype' => ['id' => '10001'],
+                'project' => ['key' => 'QA'],
+            ],
+        ]);
+        $this->assertIsString($payload);
+
+        $content = $this->getFixtureContent('Issue/post_issue.json');
+        $jiraClient = $this->createMock(JiraClientInterface::class);
+        $response = $this->createMock(ResponseInterface::class);
+
+        $jiraClient
+            ->expects($this->once())
+            ->method('post')
+            ->with('issue', $payload)
+            ->willReturn($response);
+
+        $response
+            ->expects($this->once())
+            ->method('getContent')
+            ->willReturn($content);
+
+        $repository = new IssueRepository($jiraClient);
+        $actual = $repository->create($issue);
+
+        $this->assertInstanceOf(Issue::class, $actual);
+        $this->assertEquals('24812', $actual->id);
+        $this->assertEquals('QA-6921', $actual->key);
+    }
+
+    public function testUpdate(): void
+    {
+        $issue = new Issue();
+        $issue->key = 'QA-6921';
+        $issue->getFields()->setSummary('Updated summary');
+
+        $payload = json_encode(['fields' => ['summary' => 'Updated summary', 'labels' => []]]);
+        $this->assertIsString($payload);
+
+        $jiraClient = $this->createMock(JiraClientInterface::class);
+        $response = $this->createMock(ResponseInterface::class);
+
+        $jiraClient
+            ->expects($this->once())
+            ->method('put')
+            ->with('issue/QA-6921', $payload)
+            ->willReturn($response);
+
+        $repository = new IssueRepository($jiraClient);
+        $repository->update($issue);
+    }
+
+    public function testUpdateOnIssueWithoutIdOrKey(): void
+    {
+        $issue = new Issue();
+        $issue->getFields()->setSummary('Updated summary');
+
+        $jiraClient = $this->createMock(JiraClientInterface::class);
+
+        $this->expectException(IssueMustBeExistsException::class);
+
+        $repository = new IssueRepository($jiraClient);
+        $repository->update($issue);
+    }
+
+    public function testDelete(): void
+    {
+        $jiraClient = $this->createMock(JiraClientInterface::class);
+        $response = $this->createMock(ResponseInterface::class);
+
+        $jiraClient
+            ->expects($this->once())
+            ->method('delete')
+            ->with('issue/QA-6921')
+            ->willReturn($response);
+
+        $repository = new IssueRepository($jiraClient);
+        $repository->delete('QA-6921');
     }
 }

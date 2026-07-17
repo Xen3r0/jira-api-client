@@ -9,6 +9,8 @@ use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepository;
+use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepository;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\VersionRepository;
@@ -31,6 +33,13 @@ return static function (ContainerConfigurator $container) {
             ->public()
 
         ->set(IssueRepositoryInterface::class, IssueRepository::class)
+            ->args([
+                service(JiraClientInterface::class),
+                service('serializer'),
+            ])
+            ->public()
+
+        ->set(IssueTransitionRepositoryInterface::class, IssueTransitionRepository::class)
             ->args([
                 service(JiraClientInterface::class),
                 service('serializer'),

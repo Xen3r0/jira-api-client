@@ -2,6 +2,8 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
+use Symfony\Component\Serializer\Attribute\Groups;
+
 class Issue
 {
     public ?string $expand = null;
@@ -12,6 +14,7 @@ class Issue
 
     public ?string $key = null;
 
+    #[Groups(groups: [Fields::WRITE_GROUP])]
     public Fields $fields;
 
     public function __construct()

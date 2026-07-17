@@ -2,8 +2,11 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
+use Symfony\Component\Serializer\Attribute\Groups;
+
 class Type
 {
+    #[Groups(groups: [Fields::WRITE_GROUP])]
     private ?string $id = null;
 
     private ?string $name = null;

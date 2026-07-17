@@ -2,9 +2,11 @@
 
 namespace Xen3r0\JiraApiClient\Model\Project;
 
+use Symfony\Component\Serializer\Attribute\Groups;
 use Xen3r0\JiraApiClient\Enum\Project\AssigneeType;
 use Xen3r0\JiraApiClient\Enum\Project\Style;
 use Xen3r0\JiraApiClient\Model\Avatar\Urls;
+use Xen3r0\JiraApiClient\Model\Issue\Fields;
 use Xen3r0\JiraApiClient\Model\Issue\Type;
 use Xen3r0\JiraApiClient\Model\User\User;
 use Xen3r0\JiraApiClient\Model\Version\Version;
@@ -13,6 +15,7 @@ class Project
 {
     private ?string $id = null;
 
+    #[Groups(groups: [Fields::WRITE_GROUP])]
     private ?string $key = null;
 
     private ?string $name = null;

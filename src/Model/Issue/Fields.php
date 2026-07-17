@@ -3,6 +3,7 @@
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
 use DH\Adf\Node\Block\Document;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 use Xen3r0\JiraApiClient\Model\Project\Component;
 use Xen3r0\JiraApiClient\Model\Project\Project;
@@ -13,6 +14,9 @@ use Xen3r0\JiraApiClient\Model\Workflow\StatusCategory;
 
 class Fields
 {
+    public const WRITE_GROUP = 'JAC:Issue:Fields:Write';
+
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?string $summary = null;
 
     private ?Issue $parent = null;
@@ -34,6 +38,7 @@ class Fields
     /**
      * @var array<int, string>
      */
+    #[Groups(groups: [self::WRITE_GROUP])]
     private array $labels = [];
 
     #[SerializedName('aggregatetimeoriginalestimate')]
@@ -81,11 +86,13 @@ class Fields
     private ?Votes $votes = null;
 
     #[SerializedName('issuetype')]
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?Type $issueType = null;
 
     #[SerializedName('timespent')]
     private ?int $timeSpent = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?Project $project = null;
 
     #[SerializedName('aggregatetimespent')]
@@ -108,6 +115,7 @@ class Fields
     private ?Document $description = null;
 
     #[SerializedName('duedate')]
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?\DateTimeImmutable $dueDate = null;
 
     /**
