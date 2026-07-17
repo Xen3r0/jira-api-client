@@ -12,6 +12,7 @@ class Issue
 
     public ?string $self = null;
 
+    #[Groups(groups: [Link::WRITE_GROUP])]
     public ?string $key = null;
 
     #[Groups(groups: [Fields::WRITE_GROUP])]

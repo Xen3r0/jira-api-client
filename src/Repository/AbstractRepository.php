@@ -32,4 +32,14 @@ abstract readonly class AbstractRepository
 
         return $this->serializer->deserialize($content, $class, 'json');
     }
+
+    /**
+     * @return array<int, object>
+     */
+    protected function deserializeList(ResponseInterface $response, string $class): array
+    {
+        $content = $response->getContent();
+
+        return $this->serializer->deserialize($content, sprintf('%s[]', $class), 'json');
+    }
 }

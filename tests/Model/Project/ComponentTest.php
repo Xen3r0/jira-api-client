@@ -22,6 +22,7 @@ class ComponentTest extends TestCase
             ->setId('10000')
             ->setIsAssigneeTypeValid(true)
             ->setLead($lead)
+            ->setLeadAccountId('5b10a2844c20165700ede21g')
             ->setMetadata(['key' => 'value'])
             ->setName('Component 1')
             ->setProject('TEST')
@@ -37,6 +38,7 @@ class ComponentTest extends TestCase
         $this->assertEquals('10000', $component->getId());
         $this->assertTrue($component->isAssigneeTypeValid());
         $this->assertSame($lead, $component->getLead());
+        $this->assertEquals('5b10a2844c20165700ede21g', $component->getLeadAccountId());
         $this->assertEquals(['key' => 'value'], $component->getMetadata());
         $this->assertEquals('Component 1', $component->getName());
         $this->assertEquals('TEST', $component->getProject());

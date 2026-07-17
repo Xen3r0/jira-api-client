@@ -1,0 +1,20 @@
+{
+    "id": "10001",
+    "type": {
+        "id": "10000",
+        "name": "Blocks",
+        "inward": "is blocked by",
+        "outward": "blocks",
+        "self": "https://workspace.atlassian.net/rest/api/3/issueLinkType/10000"
+    },
+    "inwardIssue": {
+        "id": "10004",
+        "key": "QA-1",
+        "self": "https://workspace.atlassian.net/rest/api/3/issue/10004"
+    },
+    "outwardIssue": {
+        "id": "10005",
+        "key": "QA-2",
+        "self": "https://workspace.atlassian.net/rest/api/3/issue/10005"
+    }
+}

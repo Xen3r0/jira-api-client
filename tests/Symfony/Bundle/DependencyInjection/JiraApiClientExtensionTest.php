@@ -8,10 +8,14 @@ use Xen3r0\JiraApiClient\Configuration\ConfigurationInterface as JiraApiClientCo
 use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\IssueLinkRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\LinkTypeRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Project\ComponentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\VersionRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\User\UserRepositoryInterface;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\CommentNormalizer;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\FieldsNormalizer;
 use Xen3r0\JiraApiClient\Symfony\Bundle\DependencyInjection\JiraApiClientExtension;
@@ -47,8 +51,12 @@ class JiraApiClientExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition(IssueCommentRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(IssueRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(IssueTransitionRepositoryInterface::class));
+        $this->assertTrue($container->hasDefinition(IssueLinkRepositoryInterface::class));
+        $this->assertTrue($container->hasDefinition(LinkTypeRepositoryInterface::class));
+        $this->assertTrue($container->hasDefinition(ComponentRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(ProjectRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(VersionRepositoryInterface::class));
+        $this->assertTrue($container->hasDefinition(UserRepositoryInterface::class));
 
         $methodCalls = $container->getDefinition(JiraApiClientConfigurationInterface::class)->getMethodCalls();
         $this->assertSame(['setUsername', ['john.doe@example.com']], $methodCalls[0]);

@@ -2,16 +2,21 @@
 
 namespace Xen3r0\JiraApiClient\Model\Project;
 
+use Symfony\Component\Serializer\Attribute\Groups;
 use Xen3r0\JiraApiClient\Model\User\User;
 
 class Component
 {
+    public const WRITE_GROUP = 'JAC:Project:Component:Write';
+
     private ?string $ari = null;
 
     private ?User $assignee = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?string $assigneeType = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?string $description = null;
 
     private ?string $id = null;
@@ -20,13 +25,18 @@ class Component
 
     private ?User $lead = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
+    private ?string $leadAccountId = null;
+
     /**
      * @var array<string, string>
      */
     private array $metadata = [];
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?string $name = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?string $project = null;
 
     private ?int $projectId = null;
@@ -117,6 +127,18 @@ class Component
     public function setLead(?User $lead): static
     {
         $this->lead = $lead;
+
+        return $this;
+    }
+
+    public function getLeadAccountId(): ?string
+    {
+        return $this->leadAccountId;
+    }
+
+    public function setLeadAccountId(?string $leadAccountId): static
+    {
+        $this->leadAccountId = $leadAccountId;
 
         return $this;
     }

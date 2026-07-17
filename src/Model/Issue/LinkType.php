@@ -2,10 +2,13 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
+use Symfony\Component\Serializer\Attribute\Groups;
+
 class LinkType
 {
     private ?string $id = null;
 
+    #[Groups(groups: [Link::WRITE_GROUP])]
     private ?string $name = null;
 
     private ?string $inward = null;

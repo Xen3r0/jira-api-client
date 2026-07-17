@@ -1,0 +1,10 @@
+{
+    "self": "https://workspace.atlassian.net/rest/api/3/component/10000",
+    "id": "10000",
+    "name": "Component 1",
+    "description": "This is a Jira component",
+    "assigneeType": "PROJECT_LEAD",
+    "assigneeTypeValid": false,
+    "project": "TEST",
+    "projectId": 10000
+}

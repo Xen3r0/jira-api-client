@@ -2,14 +2,21 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
+use Symfony\Component\Serializer\Attribute\Groups;
+
 class Link
 {
+    public const WRITE_GROUP = 'JAC:Issue:Link:Write';
+
     private ?string $id = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?Issue $inwardIssue = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?Issue $outwardIssue = null;
 
+    #[Groups(groups: [self::WRITE_GROUP])]
     private ?LinkType $type = null;
 
     public function getId(): ?string

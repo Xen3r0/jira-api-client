@@ -1,0 +1,16 @@
+[
+    {
+        "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=5b10a2844c20165700ede21g",
+        "accountId": "5b10a2844c20165700ede21g",
+        "accountType": "atlassian",
+        "displayName": "John Doe",
+        "active": true
+    },
+    {
+        "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=5b10a2844c20165700ede22h",
+        "accountId": "5b10a2844c20165700ede22h",
+        "accountType": "atlassian",
+        "displayName": "Jane Doe",
+        "active": true
+    }
+]

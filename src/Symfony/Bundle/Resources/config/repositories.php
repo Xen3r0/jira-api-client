@@ -7,14 +7,22 @@ use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\IssueLinkRepository;
+use Xen3r0\JiraApiClient\Repository\Issue\IssueLinkRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\LinkTypeRepository;
+use Xen3r0\JiraApiClient\Repository\Issue\LinkTypeRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Project\ComponentRepository;
+use Xen3r0\JiraApiClient\Repository\Project\ComponentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepository;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\VersionRepository;
 use Xen3r0\JiraApiClient\Repository\Project\VersionRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\User\UserRepository;
+use Xen3r0\JiraApiClient\Repository\User\UserRepositoryInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -46,6 +54,27 @@ return static function (ContainerConfigurator $container) {
             ])
             ->public()
 
+        ->set(IssueLinkRepositoryInterface::class, IssueLinkRepository::class)
+            ->args([
+                service(JiraClientInterface::class),
+                service('serializer'),
+            ])
+            ->public()
+
+        ->set(LinkTypeRepositoryInterface::class, LinkTypeRepository::class)
+            ->args([
+                service(JiraClientInterface::class),
+                service('serializer'),
+            ])
+            ->public()
+
+        ->set(ComponentRepositoryInterface::class, ComponentRepository::class)
+            ->args([
+                service(JiraClientInterface::class),
+                service('serializer'),
+            ])
+            ->public()
+
         ->set(ProjectRepositoryInterface::class, ProjectRepository::class)
             ->args([
                 service(JiraClientInterface::class),
@@ -54,6 +83,13 @@ return static function (ContainerConfigurator $container) {
             ->public()
 
         ->set(VersionRepositoryInterface::class, VersionRepository::class)
+            ->args([
+                service(JiraClientInterface::class),
+                service('serializer'),
+            ])
+            ->public()
+
+        ->set(UserRepositoryInterface::class, UserRepository::class)
             ->args([
                 service(JiraClientInterface::class),
                 service('serializer'),
