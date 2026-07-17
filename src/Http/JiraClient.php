@@ -4,10 +4,12 @@ namespace Xen3r0\JiraApiClient\Http;
 
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
+use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationInterface;
+use Xen3r0\JiraApiClient\Exception\Http\JiraApiException;
 
 readonly class JiraClient implements JiraClientInterface
 {
@@ -46,6 +48,7 @@ readonly class JiraClient implements JiraClientInterface
      * @param array<string, mixed> $options
      *
      * @throws TransportExceptionInterface
+     * @throws JiraApiException
      */
     public function get(string $endpoint, array $options = []): ResponseInterface
     {
@@ -57,6 +60,7 @@ readonly class JiraClient implements JiraClientInterface
      * @param array<string, mixed> $options
      *
      * @throws TransportExceptionInterface
+     * @throws JiraApiException
      */
     public function post(string $endpoint, array|string $data, array $options = []): ResponseInterface
     {
@@ -74,6 +78,7 @@ readonly class JiraClient implements JiraClientInterface
      * @param array<string, mixed> $options
      *
      * @throws TransportExceptionInterface
+     * @throws JiraApiException
      */
     public function put(string $endpoint, array|string $data, array $options = []): ResponseInterface
     {
@@ -90,6 +95,7 @@ readonly class JiraClient implements JiraClientInterface
      * @param array<string, mixed> $options
      *
      * @throws TransportExceptionInterface
+     * @throws JiraApiException
      */
     public function delete(string $endpoint, array $options = []): ResponseInterface
     {
@@ -100,10 +106,19 @@ readonly class JiraClient implements JiraClientInterface
      * @param array<string, mixed> $options
      *
      * @throws TransportExceptionInterface
+     * @throws JiraApiException
      */
     private function request(string $method, string $endpoint, array $options = []): ResponseInterface
     {
-        return $this->httpClient->request($method, $endpoint, $options);
+        $response = $this->httpClient->request($method, $endpoint, $options);
+
+        try {
+            $response->getHeaders();
+        } catch (HttpExceptionInterface $exception) {
+            throw JiraApiException::fromResponse($response, $exception);
+        }
+
+        return $response;
     }
 
     private function getBaseUri(): string

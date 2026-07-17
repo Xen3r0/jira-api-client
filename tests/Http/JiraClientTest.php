@@ -12,6 +12,7 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationFactory;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationInterface;
+use Xen3r0\JiraApiClient\Exception\Http\JiraApiException;
 use Xen3r0\JiraApiClient\Http\JiraClient;
 
 class JiraClientTest extends TestCase
@@ -164,6 +165,61 @@ class JiraClientTest extends TestCase
         $httpClient = new MockHttpClient($response);
 
         $jiraClient = new JiraClient($configuration, $httpClient);
+        $jiraClient->get('issue/QA-123');
+    }
+
+    public function testGetThrowsJiraApiExceptionWithErrorMessagesOn404(): void
+    {
+        $body = json_encode(['errorMessages' => ['Issue does not exist or you do not have permission to see it.'], 'errors' => []]);
+        $this->assertIsString($body);
+
+        $response = new MockResponse($body, ['http_code' => 404]);
+        $httpClient = new MockHttpClient($response);
+
+        $jiraClient = new JiraClient($this->configuration, $httpClient);
+
+        try {
+            $jiraClient->get('issue/QA-123');
+            $this->fail('Expected JiraApiException was not thrown.');
+        } catch (JiraApiException $exception) {
+            $this->assertSame(404, $exception->getStatusCode());
+            $this->assertSame(['Issue does not exist or you do not have permission to see it.'], $exception->getErrorMessages());
+            $this->assertSame([], $exception->getErrors());
+        }
+    }
+
+    public function testPostThrowsJiraApiExceptionWithFieldErrorsOn400(): void
+    {
+        $body = json_encode(['errorMessages' => [], 'errors' => ['summary' => 'summary is required']]);
+        $this->assertIsString($body);
+
+        $response = new MockResponse($body, ['http_code' => 400]);
+        $httpClient = new MockHttpClient($response);
+
+        $jiraClient = new JiraClient($this->configuration, $httpClient);
+
+        try {
+            $jiraClient->post('issue', ['fields' => []]);
+            $this->fail('Expected JiraApiException was not thrown.');
+        } catch (JiraApiException $exception) {
+            $this->assertSame(400, $exception->getStatusCode());
+            $this->assertSame([], $exception->getErrorMessages());
+            $this->assertSame(['summary' => 'summary is required'], $exception->getErrors());
+            $this->assertStringContainsString('summary: summary is required', $exception->getMessage());
+        }
+    }
+
+    /**
+     * @throws JiraApiException
+     */
+    public function testGetLetsTransportExceptionsPropagateUnwrapped(): void
+    {
+        $response = new MockResponse('', ['error' => 'Connection refused']);
+        $httpClient = new MockHttpClient($response);
+
+        $jiraClient = new JiraClient($this->configuration, $httpClient);
+
+        $this->expectException(TransportExceptionInterface::class);
         $jiraClient->get('issue/QA-123');
     }
 }
