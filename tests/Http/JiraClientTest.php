@@ -222,4 +222,64 @@ class JiraClientTest extends TestCase
         $this->expectException(TransportExceptionInterface::class);
         $jiraClient->get('issue/QA-123');
     }
+
+    /**
+     * @throws JiraApiException
+     */
+    public function testGetRetriesOn429AndEventuallySucceeds(): void
+    {
+        $json = ['key' => 'QA-123'];
+        $body = json_encode($json);
+        $this->assertIsString($body);
+
+        $responses = [
+            new MockResponse('', ['http_code' => 429, 'response_headers' => ['retry-after' => '0']]),
+            new MockResponse('', ['http_code' => 429, 'response_headers' => ['retry-after' => '0']]),
+            new MockResponse($body, ['http_code' => 200]),
+        ];
+        $httpClient = new MockHttpClient($responses);
+
+        $jiraClient = new JiraClient($this->configuration, $httpClient);
+        $actual = $jiraClient->get('issue/QA-123');
+
+        $this->assertSame(200, $actual->getStatusCode());
+        $this->assertSame($json, $actual->toArray());
+    }
+
+    public function testGetThrowsJiraApiExceptionAfterExhaustingRetriesOn429(): void
+    {
+        $body = json_encode(['errorMessages' => ['Rate limit exceeded'], 'errors' => []]);
+        $this->assertIsString($body);
+
+        $responses = array_fill(
+            0,
+            10,
+            new MockResponse($body, ['http_code' => 429, 'response_headers' => ['retry-after' => '0']])
+        );
+        $httpClient = new MockHttpClient($responses);
+
+        $jiraClient = new JiraClient($this->configuration, $httpClient);
+
+        try {
+            $jiraClient->get('issue/QA-123');
+            $this->fail('Expected JiraApiException was not thrown.');
+        } catch (JiraApiException $exception) {
+            $this->assertSame(429, $exception->getStatusCode());
+            $this->assertSame(['Rate limit exceeded'], $exception->getErrorMessages());
+        }
+    }
+
+    public function testGetWithoutRetriesFailsImmediatelyOn429(): void
+    {
+        $body = json_encode(['errorMessages' => ['Rate limit exceeded'], 'errors' => []]);
+        $this->assertIsString($body);
+
+        $response = new MockResponse($body, ['http_code' => 429, 'response_headers' => ['retry-after' => '0']]);
+        $httpClient = new MockHttpClient($response);
+
+        $jiraClient = new JiraClient($this->configuration, $httpClient, maxRetries: 0);
+
+        $this->expectException(JiraApiException::class);
+        $jiraClient->get('issue/QA-123');
+    }
 }

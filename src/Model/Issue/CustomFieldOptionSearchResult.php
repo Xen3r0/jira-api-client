@@ -2,7 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
-class CustomFieldOptionSearchResult
+use Xen3r0\JiraApiClient\Pagination\OffsetPaginatedResultInterface;
+
+class CustomFieldOptionSearchResult implements OffsetPaginatedResultInterface
 {
     private bool $isLast = false;
 

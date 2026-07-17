@@ -2,7 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Model\Project;
 
-class ProjectSearchResult
+use Xen3r0\JiraApiClient\Pagination\OffsetPaginatedResultInterface;
+
+class ProjectSearchResult implements OffsetPaginatedResultInterface
 {
     private bool $isLast = false;
 

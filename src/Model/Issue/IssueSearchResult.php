@@ -2,7 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
-class IssueSearchResult
+use Xen3r0\JiraApiClient\Pagination\CursorPaginatedResultInterface;
+
+class IssueSearchResult implements CursorPaginatedResultInterface
 {
     /**
      * @var array<int, Issue>

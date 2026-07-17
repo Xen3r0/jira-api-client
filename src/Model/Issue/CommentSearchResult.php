@@ -2,7 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
-class CommentSearchResult
+use Xen3r0\JiraApiClient\Pagination\OffsetPaginatedResultInterface;
+
+class CommentSearchResult implements OffsetPaginatedResultInterface
 {
     private int $maxResults = 100;
 

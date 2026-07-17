@@ -3,6 +3,8 @@
 namespace Xen3r0\JiraApiClient\Http;
 
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpClient\Retry\GenericRetryStrategy;
+use Symfony\Component\HttpClient\RetryableHttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -18,6 +20,7 @@ readonly class JiraClient implements JiraClientInterface
     public function __construct(
         private readonly ConfigurationInterface $configuration,
         ?HttpClientInterface $httpClient = null,
+        int $maxRetries = 3,
     ) {
         if (null === $httpClient) {
             $httpClient = HttpClient::create();
@@ -36,7 +39,11 @@ readonly class JiraClient implements JiraClientInterface
             $options['auth_basic'] = sprintf('%s:%s', $this->configuration->getUsername(), $this->configuration->getPassword());
         }
 
-        $this->httpClient = ScopingHttpClient::forBaseUri($httpClient, $this->getBaseUri(), $options);
+        $scopedClient = ScopingHttpClient::forBaseUri($httpClient, $this->getBaseUri(), $options);
+
+        $this->httpClient = $maxRetries > 0
+            ? new RetryableHttpClient($scopedClient, new GenericRetryStrategy([429]), $maxRetries)
+            : $scopedClient;
     }
 
     public function getApiVersion(): string
