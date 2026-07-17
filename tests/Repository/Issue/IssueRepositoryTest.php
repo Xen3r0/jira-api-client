@@ -27,7 +27,7 @@ class IssueRepositoryTest extends AbstractRepositoryTestCase
                 [
                     'jql' => 'project = QA',
                     'maxResults' => 15,
-                    'fields' => [],
+                    'fields' => ['*all'],
                     'expand' => '',
                     'nextPageToken' => null,
                 ]
@@ -41,6 +41,37 @@ class IssueRepositoryTest extends AbstractRepositoryTestCase
 
         $repository = new IssueRepository($jiraClient);
         $actual = $repository->findAll('project = QA');
+        $this->assertNotEmpty($actual->getIssues());
+    }
+
+    public function testFindAllWithExplicitFields(): void
+    {
+        $content = $this->getFixtureContent('Issue/post_issue_search_jql.json');
+        $jiraClient = $this->createMock(JiraClientInterface::class);
+        $response = $this->createMock(ResponseInterface::class);
+
+        $jiraClient
+            ->expects($this->once())
+            ->method('post')
+            ->with(
+                'search/jql',
+                [
+                    'jql' => 'project = QA',
+                    'maxResults' => 15,
+                    'fields' => ['summary', 'status'],
+                    'expand' => '',
+                    'nextPageToken' => null,
+                ]
+            )
+            ->willReturn($response);
+
+        $response
+            ->expects($this->once())
+            ->method('getContent')
+            ->willReturn($content);
+
+        $repository = new IssueRepository($jiraClient);
+        $actual = $repository->findAll('project = QA', 15, null, ['summary', 'status']);
         $this->assertNotEmpty($actual->getIssues());
     }
 

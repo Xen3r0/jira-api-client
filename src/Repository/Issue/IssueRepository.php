@@ -8,14 +8,17 @@ use Xen3r0\JiraApiClient\Repository\AbstractRepository;
 
 readonly class IssueRepository extends AbstractRepository implements IssueRepositoryInterface
 {
-    public function findAll(string $jql, int $maxResults = 15, ?string $nextPageToken = null): IssueSearchResult
+    /**
+     * @param array<int, string> $fields
+     */
+    public function findAll(string $jql, int $maxResults = 15, ?string $nextPageToken = null, array $fields = ['*all']): IssueSearchResult
     {
         $response = $this->client->post(
             'search/jql',
             [
                 'jql' => $jql,
                 'maxResults' => $maxResults,
-                'fields' => [],
+                'fields' => $fields,
                 'expand' => '',
                 'nextPageToken' => $nextPageToken,
             ]
