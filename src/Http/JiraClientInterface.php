@@ -23,6 +23,12 @@ interface JiraClientInterface
     public function post(string $endpoint, array|string $data, array $options = []): ResponseInterface;
 
     /**
+     * @param array<string, resource|string> $formData
+     * @param array<string, mixed>           $options
+     */
+    public function postMultipart(string $endpoint, array $formData, array $options = []): ResponseInterface;
+
+    /**
      * @param array<string|int, mixed>|string $data
      * @param array<string, mixed>            $options
      */

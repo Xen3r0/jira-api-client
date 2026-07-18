@@ -3,6 +3,8 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Xen3r0\JiraApiClient\Http\JiraClientInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\AttachmentRepository;
+use Xen3r0\JiraApiClient\Repository\Issue\AttachmentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepository;
@@ -26,6 +28,13 @@ use Xen3r0\JiraApiClient\Repository\User\UserRepositoryInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
+        ->set(AttachmentRepositoryInterface::class, AttachmentRepository::class)
+            ->args([
+                service(JiraClientInterface::class),
+                service('serializer'),
+            ])
+            ->public()
+
         ->set(CustomFieldOptionRepositoryInterface::class, CustomFieldOptionRepository::class)
             ->args([
                 service(JiraClientInterface::class),

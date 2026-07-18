@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `JiraApiException`, thrown with the status code and the `errorMessages`/`errors` parsed from Jira's error response body, instead of a generic HTTP exception swallowing the error details.
 - Automatic retry with backoff on HTTP 429 responses (`JiraClient` now wraps requests in a `RetryableHttpClient`, configurable via a new `maxRetries` constructor argument, default 3).
 - `Paginator::byOffset()`/`byCursor()`, generic helpers to iterate over every page of a paginated Jira endpoint without manually tracking `startAt`/`nextPageToken`.
+- `AttachmentRepository` (`add()`, `findById()`, `remove()`, `getContent()`) to manage issue attachments, plus `JiraClientInterface::postMultipart()` to support the multipart/form-data upload it requires.
 
 ### Fixed
 - `IssueRepository::findAll()` no longer silently returns issues with only their `id` populated: it now accepts a `fields` parameter (defaulting to `['*all']`) instead of always sending an empty `fields` array to `search/jql`.

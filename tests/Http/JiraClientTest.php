@@ -12,6 +12,7 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationFactory;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationInterface;
+use Xen3r0\JiraApiClient\Enum\Http\Method;
 use Xen3r0\JiraApiClient\Exception\Http\JiraApiException;
 use Xen3r0\JiraApiClient\Http\JiraClient;
 
@@ -86,6 +87,51 @@ class JiraClientTest extends TestCase
 
         $jiraClient = new JiraClient($this->configuration, $httpClient);
         $jiraClient->post('issue', $json);
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ClientExceptionInterface
+     */
+    public function testPostMultipartSendsFileAsMultipartFormData(): void
+    {
+        $tmpFile = tempnam(sys_get_temp_dir(), 'jac_test_').'.txt';
+        file_put_contents($tmpFile, 'file content');
+
+        $response = function ($method, $url, $options) use ($tmpFile): MockResponse {
+            $this->assertSame(Method::Post->value, $method);
+            $this->assertSame('https://workspace.atlassian.net/rest/api/3/issue/QA-123/attachments', $url);
+
+            $hasMultipartContentType = false;
+            foreach ($options['headers'] as $header) {
+                if (str_starts_with($header, 'Content-Type: multipart/form-data')) {
+                    $hasMultipartContentType = true;
+                }
+            }
+            $this->assertTrue($hasMultipartContentType);
+
+            $body = $options['body'];
+            $this->assertInstanceOf(\Closure::class, $body);
+            $content = '';
+            while ('' !== $chunk = $body(1024)) {
+                $content .= $chunk;
+            }
+            $this->assertStringContainsString('name="file"; filename="'.basename($tmpFile).'"', $content);
+            $this->assertStringContainsString('file content', $content);
+
+            return new MockResponse('[]');
+        };
+        $httpClient = new MockHttpClient($response);
+
+        $handle = fopen($tmpFile, 'rb');
+        $this->assertIsResource($handle);
+
+        $jiraClient = new JiraClient($this->configuration, $httpClient);
+        $jiraClient->postMultipart('issue/QA-123/attachments', ['file' => $handle]);
+
+        unlink($tmpFile);
     }
 
     /**

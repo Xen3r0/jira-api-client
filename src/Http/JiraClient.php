@@ -11,6 +11,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationInterface;
+use Xen3r0\JiraApiClient\Enum\Http\Method;
+use Xen3r0\JiraApiClient\Enum\Http\StatusCode;
 use Xen3r0\JiraApiClient\Exception\Http\JiraApiException;
 
 readonly class JiraClient implements JiraClientInterface
@@ -44,7 +46,7 @@ readonly class JiraClient implements JiraClientInterface
         $scopedClient = ScopingHttpClient::forBaseUri($httpClient, $this->getBaseUri(), $options);
 
         $this->httpClient = $maxRetries > 0
-            ? new RetryableHttpClient($scopedClient, new GenericRetryStrategy([429]), $maxRetries)
+            ? new RetryableHttpClient($scopedClient, new GenericRetryStrategy([StatusCode::TooManyRequests->value]), $maxRetries)
             : $scopedClient;
     }
 
@@ -61,7 +63,7 @@ readonly class JiraClient implements JiraClientInterface
      */
     public function get(string $endpoint, array $options = []): ResponseInterface
     {
-        return $this->request('GET', $endpoint, $options);
+        return $this->request(Method::Get, $endpoint, $options);
     }
 
     /**
@@ -79,7 +81,21 @@ readonly class JiraClient implements JiraClientInterface
             $options['json'] = $data;
         }
 
-        return $this->request('POST', $endpoint, $options);
+        return $this->request(Method::Post, $endpoint, $options);
+    }
+
+    /**
+     * @param array<string, resource|string> $formData
+     * @param array<string, mixed>           $options
+     *
+     * @throws TransportExceptionInterface
+     * @throws JiraApiException
+     */
+    public function postMultipart(string $endpoint, array $formData, array $options = []): ResponseInterface
+    {
+        $options['body'] = $formData;
+
+        return $this->request(Method::Post, $endpoint, $options);
     }
 
     /**
@@ -97,7 +113,7 @@ readonly class JiraClient implements JiraClientInterface
             $options['json'] = $data;
         }
 
-        return $this->request('PUT', $endpoint, $options);
+        return $this->request(Method::Put, $endpoint, $options);
     }
 
     /**
@@ -108,7 +124,7 @@ readonly class JiraClient implements JiraClientInterface
      */
     public function delete(string $endpoint, array $options = []): ResponseInterface
     {
-        return $this->request('DELETE', $endpoint, $options);
+        return $this->request(Method::Delete, $endpoint, $options);
     }
 
     /**
@@ -117,9 +133,9 @@ readonly class JiraClient implements JiraClientInterface
      * @throws TransportExceptionInterface
      * @throws JiraApiException
      */
-    private function request(string $method, string $endpoint, array $options = []): ResponseInterface
+    private function request(Method $method, string $endpoint, array $options = []): ResponseInterface
     {
-        $response = $this->httpClient->request($method, $endpoint, $options);
+        $response = $this->httpClient->request($method->value, $endpoint, $options);
 
         try {
             $response->getHeaders();

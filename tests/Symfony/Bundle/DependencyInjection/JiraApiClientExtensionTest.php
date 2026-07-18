@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationInterface as JiraApiClientConfigurationInterface;
 use Xen3r0\JiraApiClient\Http\JiraClientInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\AttachmentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\CustomFieldOptionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueCommentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueLinkRepositoryInterface;
@@ -47,6 +48,7 @@ class JiraApiClientExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition(JiraClientInterface::class));
         $this->assertTrue($container->hasDefinition(CommentNormalizer::class));
         $this->assertTrue($container->hasDefinition(FieldsNormalizer::class));
+        $this->assertTrue($container->hasDefinition(AttachmentRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(CustomFieldOptionRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(IssueCommentRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(IssueRepositoryInterface::class));

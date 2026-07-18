@@ -1,6 +1,7 @@
 # Repositories
 
 This library provides several repositories to interact with different Jira API endpoints. Here are some of the available repositories:
+- `AttachmentRepository`: Add, retrieve, download and remove issue attachments.
 - `ComponentRepository`: Manage project components in Jira.
 - `CustomFieldOptionRepository`: Manage custom field options in Jira.
 - `IssueCommentRepository`: Manage comments on issues in Jira.

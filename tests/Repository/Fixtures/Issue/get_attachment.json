@@ -1,0 +1,18 @@
+{
+    "self": "https://workspace.atlassian.net/rest/api/3/attachment/10000",
+    "id": "10000",
+    "filename": "picture.jpg",
+    "author": {
+        "self": "https://workspace.atlassian.net/rest/api/3/user?accountId=712020%3Ae4714706-cc14-4f5f-b242-57d9c8af9654",
+        "accountId": "712020:e4714706-cc14-4f5f-b242-57d9c8af9654",
+        "displayName": "Melanie Boulanger",
+        "active": true,
+        "timeZone": "Europe/Paris",
+        "accountType": "atlassian"
+    },
+    "created": "2025-07-07T12:06:42.139+0200",
+    "size": 23123,
+    "mimeType": "image/jpeg",
+    "content": "https://workspace.atlassian.net/rest/api/3/attachment/content/10000",
+    "thumbnail": "https://workspace.atlassian.net/rest/api/3/attachment/thumbnail/10000"
+}
