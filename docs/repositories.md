@@ -15,3 +15,5 @@ This library provides several repositories to interact with different Jira API e
 - `WorklogRepository`: Log and manage time spent on issues in Jira.
 
 A repository is missing? You can suggest a new repository by opening an issue and/or pull request.
+
+Several `findAll()` methods above return a paginated result envelope. See [Pagination](pagination.md) for how to iterate over every page with `Paginator`.

@@ -8,6 +8,7 @@
 - [Getting started](docs/getting-started.md) — prerequisites, installation, and standalone usage.
 - [Symfony Bundle](docs/symfony-bundle.md) — registering the bundle, configuration, and usage.
 - [Repositories](docs/repositories.md) — the list of available repositories.
+- [Pagination](docs/pagination.md) — iterating over paginated endpoints with `Paginator`.
 - [Changelog](CHANGELOG.md) — history of notable changes.
 - [Contributing](CONTRIBUTING.md) — how to contribute, and the release process.
 
