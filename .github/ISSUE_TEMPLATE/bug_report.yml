@@ -1,0 +1,52 @@
+name: Bug report
+description: Report a problem with the library
+labels: [bug]
+body:
+    - type: textarea
+      id: description
+      attributes:
+          label: Description
+          description: What happened, and what did you expect instead?
+      validations:
+          required: true
+
+    - type: textarea
+      id: reproduction
+      attributes:
+          label: Steps to reproduce
+          description: A minimal code snippet that reproduces the issue.
+          render: php
+      validations:
+          required: true
+
+    - type: input
+      id: package-version
+      attributes:
+          label: xen3r0/jira-api-client version
+          placeholder: e.g. 0.2.2
+      validations:
+          required: true
+
+    - type: input
+      id: php-version
+      attributes:
+          label: PHP version
+          placeholder: e.g. 8.3.1
+      validations:
+          required: true
+
+    - type: dropdown
+      id: usage-mode
+      attributes:
+          label: Usage mode
+          options:
+              - Standalone
+              - Symfony bundle
+      validations:
+          required: true
+
+    - type: textarea
+      id: logs
+      attributes:
+          label: Relevant logs / stack trace
+          render: shell

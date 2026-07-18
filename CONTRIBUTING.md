@@ -46,6 +46,14 @@ Thank you for considering contributing to this project! Your help is greatly app
 - Search for existing issues before opening a new one.
 - Provide as much detail as possible (steps to reproduce, expected behavior, logs, etc.).
 
+## Release process (maintainers)
+Releases follow [Semantic Versioning](https://semver.org/) and are cut from tags with no `v` prefix (`0.3.0`, not `v0.3.0`), matching the existing tag history.
+
+1. Move the relevant entries from the `[Unreleased]` section of [CHANGELOG.md](CHANGELOG.md) into a new `## [X.Y.Z] - YYYY-MM-DD` section, and update the comparison links at the bottom of the file.
+2. Merge that change, then tag the resulting commit and push the tag: `git tag X.Y.Z && git push origin X.Y.Z`.
+3. Pushing the tag triggers `.github/workflows/release.yml`, which runs the test suite and creates a GitHub Release, using the matching `CHANGELOG.md` section as its body (falling back to GitHub's auto-generated notes if no section matches the tag).
+4. [Packagist](https://packagist.org/packages/xen3r0/jira-api-client) picks up the new tag automatically via its GitHub webhook — no separate publish step is needed. If a fresh clone of the package is ever set up on Packagist, make sure "GitHub Hook" is enabled under the package's Settings tab so this stays automatic.
+
 ## Need Help?
 If you have questions, feel free to open an issue or contact the maintainers.
 
