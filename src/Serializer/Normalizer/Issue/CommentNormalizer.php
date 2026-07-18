@@ -2,17 +2,17 @@
 
 namespace Xen3r0\JiraApiClient\Serializer\Normalizer\Issue;
 
-use DH\Adf\Node\Block\Document;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Xen3r0\Adf\Node\Block\Document;
 use Xen3r0\JiraApiClient\Model\Issue\Comment;
 
 readonly class CommentNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     public function __construct(
-        private readonly ObjectNormalizer $objectNormalizer,
+        private ObjectNormalizer $objectNormalizer,
     ) {
     }
 
@@ -91,10 +91,7 @@ readonly class CommentNormalizer implements NormalizerInterface, DenormalizerInt
         }
 
         if (isset($data['body']) && is_array($data['body'])) {
-            $document = Document::load($data['body']);
-            if ($document instanceof Document) {
-                $object->setBody($document);
-            }
+            $object->setBody(Document::load($data['body']));
         }
 
         return $object;

@@ -2,11 +2,11 @@
 
 namespace Xen3r0\JiraApiClient\Tests\Repository\Issue;
 
-use DH\Adf\Node\Block\Document;
-use DH\Adf\Node\Block\Paragraph;
-use DH\Adf\Node\Inline\Text;
-use DH\Adf\Node\Mark\Strong;
 use Symfony\Contracts\HttpClient\ResponseInterface;
+use Xen3r0\Adf\Node\Block\Document;
+use Xen3r0\Adf\Node\Block\Paragraph;
+use Xen3r0\Adf\Node\Inline\Text;
+use Xen3r0\Adf\Node\Mark\Strong;
 use Xen3r0\JiraApiClient\Exception\Issue\IssueMustBeExistsException;
 use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Model\Issue\Issue;
@@ -101,12 +101,20 @@ class IssueRepositoryTest extends AbstractRepositoryTestCase
 
         $this->assertNotNull($actual);
 
-        $this->assertInstanceOf(Document::class, $actual->getFields()->getDescription());
-        $this->assertInstanceOf(Paragraph::class, $actual->getFields()->getDescription()->getContent()[0]);
-        $this->assertInstanceOf(Text::class, $actual->getFields()->getDescription()->getContent()[0]->getContent()[0]);
-        $this->assertSame('Hello ', $actual->getFields()->getDescription()->getContent()[0]->getContent()[0]->getText());
-        $this->assertSame('world', $actual->getFields()->getDescription()->getContent()[0]->getContent()[1]->getText());
-        $this->assertInstanceOf(Strong::class, $actual->getFields()->getDescription()->getContent()[0]->getContent()[1]->getMarks()[0]);
+        $description = $actual->getFields()->getDescription();
+        $this->assertInstanceOf(Document::class, $description);
+
+        $paragraph = $description->getContent()[0];
+        $this->assertInstanceOf(Paragraph::class, $paragraph);
+
+        $firstText = $paragraph->getContent()[0];
+        $this->assertInstanceOf(Text::class, $firstText);
+        $this->assertSame('Hello ', $firstText->getText());
+
+        $secondText = $paragraph->getContent()[1];
+        $this->assertInstanceOf(Text::class, $secondText);
+        $this->assertSame('world', $secondText->getText());
+        $this->assertInstanceOf(Strong::class, $secondText->getMarks()[0]);
 
         $this->assertNotEmpty($actual->getFields()->getCustomFields());
         $this->assertArrayHasKey('customfield_10072', $actual->getFields()->getCustomFields());

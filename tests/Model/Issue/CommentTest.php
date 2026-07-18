@@ -2,8 +2,8 @@
 
 namespace Xen3r0\JiraApiClient\Tests\Model\Issue;
 
-use DH\Adf\Node\Block\Document;
 use PHPUnit\Framework\TestCase;
+use Xen3r0\Adf\Node\Block\Document;
 use Xen3r0\JiraApiClient\Model\Issue\Comment;
 use Xen3r0\JiraApiClient\Model\Issue\Visiblity;
 use Xen3r0\JiraApiClient\Model\User\User;

@@ -2,9 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Tests\Serializer\Normalizer\Issue;
 
-use DH\Adf\Node\Block\Document;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Xen3r0\Adf\Node\Block\Document;
 use Xen3r0\JiraApiClient\Model\Issue\Comment;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\CommentNormalizer;
 use Xen3r0\JiraApiClient\Serializer\SerializerFactory;
@@ -57,7 +57,6 @@ class CommentNormalizerTest extends TestCase
     public function testNormalizeSerializesDocumentBody(): void
     {
         $body = Document::load(self::ADF_BODY);
-        $this->assertInstanceOf(Document::class, $body);
 
         $comment = (new Comment())
             ->setId('10000')

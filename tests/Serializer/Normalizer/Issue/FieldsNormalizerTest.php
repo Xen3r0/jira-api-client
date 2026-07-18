@@ -2,9 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Tests\Serializer\Normalizer\Issue;
 
-use DH\Adf\Node\Block\Document;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Xen3r0\Adf\Node\Block\Document;
 use Xen3r0\JiraApiClient\Model\Issue\CustomField;
 use Xen3r0\JiraApiClient\Model\Issue\Fields;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\FieldsNormalizer;
@@ -63,7 +63,6 @@ class FieldsNormalizerTest extends TestCase
             ->setSelf('https://example.atlassian.net/rest/api/3/customField/10000');
 
         $description = Document::load(self::ADF_DESCRIPTION);
-        $this->assertInstanceOf(Document::class, $description);
 
         $fields = (new Fields())
             ->setSummary('This is a bug')

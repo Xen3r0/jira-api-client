@@ -2,8 +2,8 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
-use DH\Adf\Node\Block\Document;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Xen3r0\Adf\Node\Block\Document;
 use Xen3r0\JiraApiClient\Model\User\User;
 
 class Comment

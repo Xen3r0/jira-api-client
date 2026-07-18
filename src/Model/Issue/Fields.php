@@ -2,9 +2,9 @@
 
 namespace Xen3r0\JiraApiClient\Model\Issue;
 
-use DH\Adf\Node\Block\Document;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\SerializedName;
+use Xen3r0\Adf\Node\Block\Document;
 use Xen3r0\JiraApiClient\Model\Project\Component;
 use Xen3r0\JiraApiClient\Model\Project\Project;
 use Xen3r0\JiraApiClient\Model\Status\Status;

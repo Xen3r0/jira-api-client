@@ -30,7 +30,7 @@
         "symfony/property-access": "^6.4 || ^7.0",
         "symfony/property-info": "^6.4 || ^7.0",
         "symfony/serializer": "^6.4 || ^7.0",
-        "xen3r0/adf-tools": "^1.1.1"
+        "xen3r0/adf-converter": "^1.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.85",
@@ -40,12 +40,6 @@
         "symfony/framework-bundle": "^6.4 || ^7.0",
         "symfony/var-dumper": "^6.4"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Xen3r0/adf-tools"
-        }
-    ],
     "config": {
         "sort-packages": true
     }

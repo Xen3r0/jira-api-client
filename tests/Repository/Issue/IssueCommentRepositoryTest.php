@@ -2,11 +2,11 @@
 
 namespace Xen3r0\JiraApiClient\Tests\Repository\Issue;
 
-use DH\Adf\Node\Block\Document;
-use DH\Adf\Node\Block\Paragraph;
-use DH\Adf\Node\Inline\Mention;
-use DH\Adf\Node\Inline\Text;
 use Symfony\Contracts\HttpClient\ResponseInterface;
+use Xen3r0\Adf\Node\Block\Document;
+use Xen3r0\Adf\Node\Block\Paragraph;
+use Xen3r0\Adf\Node\Inline\Mention;
+use Xen3r0\Adf\Node\Inline\Text;
 use Xen3r0\JiraApiClient\Exception\Issue\CommentBodyEmptyException;
 use Xen3r0\JiraApiClient\Http\JiraClientInterface;
 use Xen3r0\JiraApiClient\Model\Issue\Comment;
@@ -75,7 +75,6 @@ class IssueCommentRepositoryTest extends AbstractRepositoryTestCase
                 ['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'Hello world']]],
             ],
         ]);
-        $this->assertInstanceOf(Document::class, $body);
 
         $comment = (new Comment())->setBody($body);
         $payload = SerializerFactory::create()->serialize($comment, 'json', ['groups' => Comment::WRITE_GROUP]);
