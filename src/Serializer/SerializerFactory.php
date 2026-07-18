@@ -19,6 +19,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\CommentNormalizer;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\FieldsNormalizer;
+use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\WorklogNormalizer;
 
 class SerializerFactory
 {
@@ -44,6 +45,7 @@ class SerializerFactory
             new ArrayDenormalizer(),
             new FieldsNormalizer($objectNormalizer),
             new CommentNormalizer($objectNormalizer),
+            new WorklogNormalizer($objectNormalizer),
             $objectNormalizer,
         ];
 

@@ -17,6 +17,8 @@ use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\LinkTypeRepository;
 use Xen3r0\JiraApiClient\Repository\Issue\LinkTypeRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\WorklogRepository;
+use Xen3r0\JiraApiClient\Repository\Issue\WorklogRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ComponentRepository;
 use Xen3r0\JiraApiClient\Repository\Project\ComponentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepository;
@@ -99,6 +101,13 @@ return static function (ContainerConfigurator $container) {
             ->public()
 
         ->set(UserRepositoryInterface::class, UserRepository::class)
+            ->args([
+                service(JiraClientInterface::class),
+                service('serializer'),
+            ])
+            ->public()
+
+        ->set(WorklogRepositoryInterface::class, WorklogRepository::class)
             ->args([
                 service(JiraClientInterface::class),
                 service('serializer'),

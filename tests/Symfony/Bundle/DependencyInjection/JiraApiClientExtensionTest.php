@@ -13,12 +13,14 @@ use Xen3r0\JiraApiClient\Repository\Issue\IssueLinkRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\IssueTransitionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Issue\LinkTypeRepositoryInterface;
+use Xen3r0\JiraApiClient\Repository\Issue\WorklogRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ComponentRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\ProjectRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\Project\VersionRepositoryInterface;
 use Xen3r0\JiraApiClient\Repository\User\UserRepositoryInterface;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\CommentNormalizer;
 use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\FieldsNormalizer;
+use Xen3r0\JiraApiClient\Serializer\Normalizer\Issue\WorklogNormalizer;
 use Xen3r0\JiraApiClient\Symfony\Bundle\DependencyInjection\JiraApiClientExtension;
 
 class JiraApiClientExtensionTest extends TestCase
@@ -48,6 +50,7 @@ class JiraApiClientExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition(JiraClientInterface::class));
         $this->assertTrue($container->hasDefinition(CommentNormalizer::class));
         $this->assertTrue($container->hasDefinition(FieldsNormalizer::class));
+        $this->assertTrue($container->hasDefinition(WorklogNormalizer::class));
         $this->assertTrue($container->hasDefinition(AttachmentRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(CustomFieldOptionRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(IssueCommentRepositoryInterface::class));
@@ -59,6 +62,7 @@ class JiraApiClientExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition(ProjectRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(VersionRepositoryInterface::class));
         $this->assertTrue($container->hasDefinition(UserRepositoryInterface::class));
+        $this->assertTrue($container->hasDefinition(WorklogRepositoryInterface::class));
 
         $methodCalls = $container->getDefinition(JiraApiClientConfigurationInterface::class)->getMethodCalls();
         $this->assertSame(['setUsername', ['john.doe@example.com']], $methodCalls[0]);
