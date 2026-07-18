@@ -1,8 +1,18 @@
 {
     "name": "xen3r0/jira-api-client",
-    "description": "A Modern Jira API client",
+    "description": "A modern, fluent PHP client for the Jira Cloud REST API (v3) — issues, comments, attachments, worklogs, projects, versions, components, users and issue links — usable standalone or as a Symfony bundle.",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "jira",
+        "jira-cloud",
+        "atlassian",
+        "api-client",
+        "rest-api",
+        "php",
+        "symfony",
+        "symfony-bundle"
+    ],
     "autoload": {
         "psr-4": {
             "Xen3r0\\JiraApiClient\\": "src/"
