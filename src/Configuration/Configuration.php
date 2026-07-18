@@ -10,16 +10,24 @@ final class Configuration implements ConfigurationInterface
 
     private ?string $password = null;
 
+    private ?string $token = null;
+
     public function __construct(string $host)
     {
         $this->host = $host;
     }
 
-    public static function create(string $host, ?string $username = null, #[\SensitiveParameter] ?string $password = null): static
+    public static function createWithBasic(string $host, ?string $username = null, #[\SensitiveParameter] ?string $password = null): static
     {
         return (new static($host))
             ->setUsername($username)
             ->setPassword($password);
+    }
+
+    public static function createWithToken(string $host, #[\SensitiveParameter] string $token): static
+    {
+        return (new static($host))
+            ->setToken($token);
     }
 
     public function getHost(): string
@@ -54,6 +62,18 @@ final class Configuration implements ConfigurationInterface
     public function setPassword(#[\SensitiveParameter] ?string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(#[\SensitiveParameter] ?string $token): static
+    {
+        $this->token = $token;
 
         return $this;
     }

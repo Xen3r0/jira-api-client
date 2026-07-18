@@ -18,4 +18,8 @@ interface ConfigurationInterface
     public function getPassword(): ?string;
 
     public function setPassword(?string $password): static;
+
+    public function getToken(): ?string;
+
+    public function setToken(?string $token): static;
 }

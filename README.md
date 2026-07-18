@@ -39,6 +39,7 @@ php composer.phar require xen3r0/jira-api-client
 Create a new instance of the `JiraClient` class:
 
 ```php
+use Xen3r0\JiraApiClient\Configuration\Configuration;
 use Xen3r0\JiraApiClient\Configuration\ConfigurationFactory;
 use Xen3r0\JiraApiClient\Http\JiraClient;
 
@@ -47,6 +48,13 @@ $configuration = ConfigurationFactory::create([
     'username' => 'your-username',
     'password' => 'your-api-token',
 ]);
+$client = new JiraClient($configuration);
+```
+
+You can also authenticate with a bearer token — a Jira Personal Access Token or an OAuth 2.0 (3LO) access token you've already obtained — instead of Basic Auth. When a token is set, it takes precedence over `username`/`password`:
+
+```php
+$configuration = Configuration::createWithToken('https://your-jira-instance.atlassian.net', 'your-bearer-token');
 $client = new JiraClient($configuration);
 ```
 
@@ -80,9 +88,19 @@ Then, configure the bundle in your `config/packages/jira_api_client.yaml` file:
 
 ```yaml
 jira_api_client:
-    host: 'https://your-jira-instance.atlassian.net'
-    username: 'your-username'
-    password: 'your-api-token'
+    http:
+        host: 'https://your-jira-instance.atlassian.net'
+        username: 'your-username'
+        password: 'your-api-token'
+```
+
+Or, with a bearer token (Personal Access Token or OAuth 2.0 access token) instead of Basic Auth — `token` takes precedence over `username`/`password` when both are set:
+
+```yaml
+jira_api_client:
+    http:
+        host: 'https://your-jira-instance.atlassian.net'
+        token: 'your-bearer-token'
 ```
 
 ## Usage

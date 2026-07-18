@@ -35,7 +35,9 @@ readonly class JiraClient implements JiraClientInterface
             ],
         ];
 
-        if (null !== $this->configuration->getUsername() && null !== $this->configuration->getPassword()) {
+        if (null !== $this->configuration->getToken()) {
+            $options['auth_bearer'] = $this->configuration->getToken();
+        } elseif (null !== $this->configuration->getUsername() && null !== $this->configuration->getPassword()) {
             $options['auth_basic'] = sprintf('%s:%s', $this->configuration->getUsername(), $this->configuration->getPassword());
         }
 

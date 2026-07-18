@@ -25,6 +25,7 @@ class ConfigurationTest extends TestCase
         $this->assertEquals('https://example.atlassian.net', $config['http']['host']);
         $this->assertNull($config['http']['username']);
         $this->assertNull($config['http']['password']);
+        $this->assertNull($config['http']['token']);
     }
 
     public function testHostIsRequired(): void

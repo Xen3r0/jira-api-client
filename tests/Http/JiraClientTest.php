@@ -168,6 +168,57 @@ class JiraClientTest extends TestCase
         $jiraClient->get('issue/QA-123');
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ClientExceptionInterface
+     */
+    public function testRequestWithTokenUsesAuthBearer(): void
+    {
+        $configuration = ConfigurationFactory::create([
+            'host' => 'https://workspace.atlassian.net',
+            'token' => 'my-bearer-token',
+        ]);
+
+        $response = function ($method, $url, $options): MockResponse {
+            $this->assertContains('Authorization: Bearer my-bearer-token', $options['headers']);
+
+            return new MockResponse();
+        };
+        $httpClient = new MockHttpClient($response);
+
+        $jiraClient = new JiraClient($configuration, $httpClient);
+        $jiraClient->get('issue/QA-123');
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ClientExceptionInterface
+     */
+    public function testRequestWithTokenTakesPrecedenceOverAuthBasic(): void
+    {
+        $configuration = ConfigurationFactory::create([
+            'host' => 'https://workspace.atlassian.net',
+            'username' => 'account@compagny.fr',
+            'password' => 'mytoken',
+            'token' => 'my-bearer-token',
+        ]);
+
+        $response = function ($method, $url, $options): MockResponse {
+            $this->assertContains('Authorization: Bearer my-bearer-token', $options['headers']);
+            $this->assertNotContains('Authorization: Basic '.base64_encode('account@compagny.fr:mytoken'), $options['headers']);
+
+            return new MockResponse();
+        };
+        $httpClient = new MockHttpClient($response);
+
+        $jiraClient = new JiraClient($configuration, $httpClient);
+        $jiraClient->get('issue/QA-123');
+    }
+
     public function testGetThrowsJiraApiExceptionWithErrorMessagesOn404(): void
     {
         $body = json_encode(['errorMessages' => ['Issue does not exist or you do not have permission to see it.'], 'errors' => []]);

@@ -33,6 +33,7 @@ class JiraApiClientExtension extends Extension
         $container->setParameter('jira_api_client.http.host', $config['http']['host']);
         $container->setParameter('jira_api_client.http.username', $config['http']['username']);
         $container->setParameter('jira_api_client.http.password', $config['http']['password']);
+        $container->setParameter('jira_api_client.http.token', $config['http']['token']);
 
         $loader->load('configuration.php');
         $loader->load('http.php');
@@ -43,6 +44,11 @@ class JiraApiClientExtension extends Extension
             $container->getDefinition(JiraApiClientConfigurationInterface::class)
                 ->addMethodCall('setUsername', [$config['http']['username']])
                 ->addMethodCall('setPassword', [$config['http']['password']]);
+        }
+
+        if (isset($config['http']['token'])) {
+            $container->getDefinition(JiraApiClientConfigurationInterface::class)
+                ->addMethodCall('setToken', [$config['http']['token']]);
         }
     }
 }

@@ -80,6 +80,29 @@ class JiraApiClientExtensionTest extends TestCase
 
         $this->assertNull($container->getParameter('jira_api_client.http.username'));
         $this->assertNull($container->getParameter('jira_api_client.http.password'));
+        $this->assertNull($container->getParameter('jira_api_client.http.token'));
         $this->assertEmpty($container->getDefinition(JiraApiClientConfigurationInterface::class)->getMethodCalls());
+    }
+
+    public function testLoadWithToken(): void
+    {
+        $container = new ContainerBuilder();
+
+        (new JiraApiClientExtension())->load(
+            [
+                [
+                    'http' => [
+                        'host' => 'https://example.atlassian.net',
+                        'token' => 'my-bearer-token',
+                    ],
+                ],
+            ],
+            $container
+        );
+
+        $this->assertEquals('my-bearer-token', $container->getParameter('jira_api_client.http.token'));
+
+        $methodCalls = $container->getDefinition(JiraApiClientConfigurationInterface::class)->getMethodCalls();
+        $this->assertSame(['setToken', ['my-bearer-token']], $methodCalls[0]);
     }
 }

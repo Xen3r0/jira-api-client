@@ -5,7 +5,7 @@ namespace Xen3r0\JiraApiClient\Configuration;
 class ConfigurationFactory
 {
     /**
-     * @param array{host: string, username: string|null, password: string|null} $config
+     * @param array{host: string, username?: string|null, password?: string|null, token?: string|null} $config
      */
     public static function create(array $config): Configuration
     {
@@ -17,6 +17,10 @@ class ConfigurationFactory
 
         if (isset($config['password'])) {
             $configuration->setPassword($config['password']);
+        }
+
+        if (isset($config['token'])) {
+            $configuration->setToken($config['token']);
         }
 
         return $configuration;
